@@ -16,4 +16,4 @@
 
 **About Me:** 🎹 - 🎮 - 👾 - 🖥️ - 📺
 
-Find me on [weslley.io](https://weslley.io) 🌐
+Find me on [weslley.io](https://weslley.io).
