@@ -1,16 +1,16 @@
-### Hi there 👋
+### **Hello! I'm _Weslley_.**
 
-<!--
-**wellwelwel/wellwelwel** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+@ : 🇧🇷
 
-Here are some ideas to get you started:
+* Working as a little adventurous on:
+   * NodeJS, CommomJS and React Native
+   * Apache and PHP
+   * HTML, CSS, Sass
+* Automating everything I touch 🤖
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+* I'm currently developing my own library in NodeJS, based on the practicality of JQuery and ReactJS environment, but in native JavaScript (no pre or post processing, just compiling).
+* I'm interested in creating a good networking.
+
+**About Me:** `🎹 | 🎮 | 👾 | 🖥️ | 📺`
+
+Find me on [Instagram](https://www.instagram.com/wellwelwel/) and [weslley.io](https://weslley.io).
