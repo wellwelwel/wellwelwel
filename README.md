@@ -1,4 +1,4 @@
-**Hello! ✌️💻 I'm Weslley.**
+**Hello! ✌️ I'm Weslley.**
 
 `@ : 🇧🇷`
 
