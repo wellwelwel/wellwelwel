@@ -5,7 +5,7 @@
 * Working as adventurous on:
    > * __NodeJS__, __CommomJS__ and __React Native__
    > * __Apache__ and __PHP__
-   > * __HTML5__, __CSS3__, __Sass__
+   > * __HTML5__, __CSS3__ and __Sass__
 
 * Working as grown-up on:
    > * __VPS__ and __Hosting__ set-up and maintenance, __DNS__, __CDN__, __security__ and server __preventions__ configurations, enhancement __Apache__, etc.
