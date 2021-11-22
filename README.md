@@ -3,7 +3,7 @@
 `@ : 🇧🇷`
 
 * Working as adventurous on:
-   > * __NodeJS__, __CommomJS__ and __React Native__
+   > * __NodeJS__, __JavaScript__ and __React Native__
    > * __Apache__ and __PHP__
    > * __HTML5__, __CSS3__ and __Sass__
 
