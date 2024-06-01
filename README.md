@@ -23,7 +23,7 @@ Passionate _open-source_ developer, **MySQL2**'s co-maintainer and **Poku**'s cr
     <tr>
       <td width="110"><a href="https://github.com/wellwelwel/mysql2-orm">MySQL2 ORM</a></td>
       <td width="140"><img src="https://img.shields.io/npm/dt/mysql2-orm.svg?style=flat-square&logo=npm&logoColor=white&color=1e90ff" alt="Downloads"></td>
-      <td>🎲 An <i>ORM</i> built on <b>MySQL2</b> designed to be intuitive and productive.</td>
+      <td>🎲 An <i>ORM</i> built on <b>MySQL2</b> designed to be intuitive, productive and focused on essential functionality.</td>
     </tr>
     <tr>
       <td width="110"><a href="https://github.com/wellwelwel/packages-update">Packages Update</a></td>
