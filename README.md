@@ -28,7 +28,7 @@ Passionate _open-source_ developer, **MySQL2**'s co-maintainer and **Poku**'s cr
     <tr>
       <td width="150"><a href="https://github.com/wellwelwel/packages-update"><b>Packages Update</b></a></td>
       <td width="150"><img src="https://img.shields.io/npm/dt/packages-update.svg?style=flat-square&logo=npm&logoColor=white&color=1e90ff" alt="Downloads"></td>
-      <td width="500">📦 A flexible and lightweight updater for packages.</td>
+      <td width="500">📦 A flexible and lightweight updater for <b>npm</b> packages.</td>
     </tr>
   </tbody>
 </table>
