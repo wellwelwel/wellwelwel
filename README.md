@@ -11,7 +11,7 @@ Passionate _open-source_ developer, **MySQL2**'s co-maintainer and **Poku**'s cr
 <table>
   <tbody>
     <tr>
-      <td width="110"><a href="https://github.com/wellwelwel/poku">Poku ✨</a></td>
+      <td width="110"><a href="https://github.com/wellwelwel/poku">Poku</a> ✨</td>
       <td width="140"><img src="https://img.shields.io/npm/dt/poku.svg?style=flat-square&logo=npm&logoColor=white&color=1e90ff" alt="Downloads"></td>
       <td>🐷 <b>Poku</b> makes testing easy for <b>Node.js</b>, <b>Bun</b> & <b>Deno</b> at the same time.</td>
     </tr>
@@ -41,7 +41,7 @@ Passionate _open-source_ developer, **MySQL2**'s co-maintainer and **Poku**'s cr
 
   <tbody>
     <tr>
-      <td width="110"><a href="https://github.com/sidorares/node-mysql2/pulls?q=is:pr+author:wellwelwel+">MySQL2 ✨</a></td>
+      <td width="110"><a href="https://github.com/sidorares/node-mysql2/pulls?q=is:pr+author:wellwelwel+">MySQL2</a> ✨</td>
       <td width="140"><img src="https://img.shields.io/npm/dt/mysql2.svg?style=flat-square&logo=npm&logoColor=white&color=6c5ce7" alt="Downloads"></td>
       <td>⚡ Fast <b>mysqljs/mysql</b> compatible <b>MySQL</b> driver for <b>Node.js</b>.</td>
     </tr>
