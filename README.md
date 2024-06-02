@@ -1,7 +1,5 @@
 ### Hey, I'm Weslley! 👋
 
-Passionate _open-source_ developer, **MySQL2**'s co-maintainer and **Poku**'s creator ☁️✨
-
 - I'm working on my innovative _test runner_ [**Poku**](https://github.com/wellwelwel/poku). Try it out and give it a star to show your support ⭐️
 
 ---
