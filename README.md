@@ -1,6 +1,6 @@
 ### Hey, I'm Weslley 👋
 
-- I'm working on my innovative _test runner_ [**Poku**](https://github.com/wellwelwel/poku). Try it out and give it a star to show your support ✨
+- I'm working on my innovative _test runner_ [**Poku**](https://github.com/wellwelwel/poku). Try it out and give it a star to show your support 🌟
 
 ---
 
