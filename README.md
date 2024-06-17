@@ -45,6 +45,11 @@
       <td>Fast <b>mysqljs/mysql</b> compatible <b>MySQL</b> driver for <b>Node.js</b>.</td>
     </tr>
     <tr>
+      <td><a href="https://github.com/DefinitelyTyped/DefinitelyTyped/pulls?q=is:pr+author:wellwelwel+">@types/node</a></td>
+      <td width="170"><img src="https://img.shields.io/npm/dm/@types/node.svg?style=flat-square&color=6c5ce7" alt="Downloads"></td>
+      <td>Node.js JavaScript runtime ✨🐢🚀✨</td>
+    </tr>
+    <tr>
       <td><a href="https://github.com/BrasilAPI/cep-promise/pulls?q=is:pr+author:wellwelwel+">CEP Promise</a></td>
       <td width="170"><img src="https://img.shields.io/npm/dm/cep-promise.svg?style=flat-square&color=6c5ce7" alt="Downloads"></td>
       <td>ZIP code search integrated directly with Correios, ViaCEP, and other services (<b>Node.js</b> and Browser).</td>
