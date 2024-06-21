@@ -36,7 +36,7 @@ I'm working on an innovative test runner: [**Poku**](https://github.com/wellwelw
 
 --- -->
 
-#### 🤝 Check out some contributions (_PRs_)
+#### 🤝 Be welcome to check out some contributions (_PRs_)
 
 <table>
 
