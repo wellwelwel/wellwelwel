@@ -1,6 +1,8 @@
-### Hey, I'm Weslley 👋
+<!--  ### Hey, I'm Weslley 👋 -->
 
-- I'm working on my innovative _test runner_ [**Poku**](https://github.com/wellwelwel/poku?tab=readme-ov-file#readme). Try it out and give it a star to show your support 🌟
+I'm working on an innovative test runner: [**Poku**](https://github.com/wellwelwel/poku?tab=readme-ov-file#readme).
+
+- Try it out and give it a star to show your support 🌟
 
 ---
 
@@ -42,7 +44,7 @@
     <tr>
       <td><a href="https://github.com/sidorares/node-mysql2/pulls?q=is:pr+author:wellwelwel+">MySQL2</a></td>
       <td width="170"><img src="https://img.shields.io/npm/dm/mysql2.svg?style=flat-square&color=6c5ce7" alt="Downloads"></td>
-      <td>Fast <b>mysqljs/mysql</b> compatible <b>MySQL</b> driver for <b>Node.js</b>.</td>
+      <td>⚡️ Fast <b>mysqljs/mysql</b> compatible <b>MySQL</b> driver for <b>Node.js</b>.</td>
     </tr>
     <tr>
       <td><a href="https://github.com/DefinitelyTyped/DefinitelyTyped/pulls?q=is:pr+author:wellwelwel+">@types/node</a></td>
