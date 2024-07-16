@@ -1,4 +1,4 @@
-I'm working on an innovative test runner: [**Poku**](https://github.com/wellwelwel/poku?tab=readme-ov-file#readme).
+I'm working on [**Poku**](https://github.com/wellwelwel/poku?tab=readme-ov-file#readme), an innovative test runner.
 
 - Try it out and give it a star to show your support 🌟
 
