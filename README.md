@@ -1,10 +1,10 @@
-#### I'm working on [**Poku**](https://github.com/wellwelwel/poku?tab=readme-ov-file#readme), an innovative test runner
+#### I'm working on [**Poku**](https://github.com/wellwelwel/poku?tab=readme-ov-file#readme), an innovative test runner.
 
 > _Try it out and give it a star to show your support_ 🌟
 
 ---
 
-##### Working on _open-source_ since **2021**
+##### 👨🏻‍💻 Working on _open-source_ since **2021**
 
 <blockquote>
   <a href="https://www.npmjs.com/~weslley.io">
