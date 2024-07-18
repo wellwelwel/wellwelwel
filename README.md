@@ -8,7 +8,7 @@
 
 <blockquote>
   <a href="https://www.npmjs.com/~weslley.io">
-    <img src="https://img.shields.io/npm-stat/dy/weslley.io?style=flat-square&color=6c5ce7&logo=npm&logoColor=white">
+    <img src="https://img.shields.io/npm-stat/dy/weslley.io?style=flat-square&color=6c5ce7&logo=npm&logoColor=white" alt="NPM Downloads by package author">
   </a>
 </blockquote>
 
