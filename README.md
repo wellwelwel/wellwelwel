@@ -1,6 +1,6 @@
 #### I'm working on [**Poku**](https://github.com/wellwelwel/poku?tab=readme-ov-file#readme), an innovative test runner.
 
-> _Try it out and give it a star to show your support_ 🌟
+> _Try it out and give it a **star** to show your support_ 🌟
 
 ---
 
