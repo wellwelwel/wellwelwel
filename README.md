@@ -1,8 +1,10 @@
 #### I'm working on [**Poku**](https://github.com/wellwelwel/poku?tab=readme-ov-file#readme), an innovative test runner.
 
+<!--
 <a href="https://github.com/wellwelwel/poku">
   <img align="right" width="128" src="https://raw.githubusercontent.com/wellwelwel/poku/main/.github/assets/readme/poku.svg" />
 </a>
+-->
 
 > _Give it a try and **star** the repo to show your support_ 🐷
 
