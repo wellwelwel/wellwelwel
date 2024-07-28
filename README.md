@@ -61,7 +61,10 @@
 
 ---
 
-> ###### Contact me via **𝕏**.
+> ###### Contact me via **𝕏** or **Linkedin**
+> 
+> - 🇺🇸
+> - 🇧🇷
 
 <!--
 ---
