@@ -59,9 +59,7 @@
 
 > ➕ _Projects I maintain or co-maintain._
 
----
-
-> ###### Contact me via **𝕏** or **Linkedin** — 🇺🇸 🇧🇷
+<!-- > ###### Contact me via **𝕏** or **Linkedin** — 🇺🇸 🇧🇷 -->
 
 <!--
 ---
