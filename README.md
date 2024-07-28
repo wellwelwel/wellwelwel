@@ -61,9 +61,7 @@
 
 ---
 
-> ###### Contact me via **𝕏** or **Linkedin**
-> 
-> - 🇺🇸, 🇧🇷
+> ###### Contact me via **𝕏** or **Linkedin** — 🇺🇸 🇧🇷
 
 <!--
 ---
