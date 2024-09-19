@@ -57,7 +57,7 @@
     <tr>
       <td><a href="https://github.com/mysqljs/named-placeholders/pulls?q=is:pr+author:wellwelwel">named-placeholders</a></td>
       <td><a href="https://www.npmjs.com/package/named-placeholders"><img src="https://img.shields.io/npm/dm/named-placeholders.svg?style=flat-square&color=6c5ce7&label=&logo=npm&logoColor=white" alt="Downloads"></a></td>
-      <td>🐬 SQL named placeholders to unnamed compiler.</td>
+      <td>🐬 PDO-style SQL named placeholders to unnamed compiler.</td>
     </tr>
   </tbody>
 </table>
