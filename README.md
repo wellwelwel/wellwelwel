@@ -63,7 +63,7 @@
 </table>
 
 > ➕ _Projects I maintain or co-maintain._<br />
-> ➗ _The numbers for these contributions might not be directly mine, but it's fascinating trying to measure the impact my contributions can have directly and indirectly._
+> ➗ _Numbers for these contributions might not be directly mine, but it's fascinating trying to measure the impact my contributions can have directly and indirectly._
 
 <!-- > ###### Contact me via **𝕏** or **Linkedin** — 🇺🇸 🇧🇷 -->
 
