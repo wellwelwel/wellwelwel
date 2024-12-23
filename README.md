@@ -37,7 +37,7 @@
     <tr>
       <td><a href="https://github.com/wellwelwel/lru.min/pulls?q=is:merged+author:wellwelwel">lru.min</a> ➕</td>
       <td><a href="https://www.npmjs.com/package/lru.min"><img src="https://img.shields.io/npm/dm/lru.min.svg?style=flat-square&color=6c5ce7&label=&logo=npm&logoColor=white" alt="Downloads"></a></td>
-      <td>🔥 An extremely fast and efficient <b>LRU</b> cache for <b>JavaScript</b> with high compatibility.</td>
+      <td>🔥 An extremely fast and efficient <b>LRU</b> cache for <b>JavaScript</b>.</td>
     </tr>
     <tr>
       <td><a href="https://github.com/DefinitelyTyped/DefinitelyTyped/pulls?q=is:merged+author:wellwelwel">@types/node</a> ➗</td>
