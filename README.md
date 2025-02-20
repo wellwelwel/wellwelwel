@@ -20,7 +20,7 @@
 
 ---
 
-##### 🤝 Be welcome to check out some collaborative contributions (_PRs_)
+##### 🤝 Be welcome to check out some collaborative contributions with most impact (_PRs_)
 
 <table>
   <tbody>
