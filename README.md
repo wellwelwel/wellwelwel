@@ -74,4 +74,4 @@
 > [!TIP]
 > By clicking on a project's name in the table, you'll be taken directly to my contributions to it 👨🏻‍💻
 
-- Contact me via [**Linkedin**](https://www.linkedin.com/in/wellwelwel/) — 🇧🇷 🇺🇸
+- Contact me via [**LinkedIn**](https://www.linkedin.com/in/wellwelwel/) — 🇧🇷 🇺🇸
