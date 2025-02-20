@@ -67,54 +67,11 @@
   </tbody>
 </table>
 
-> ➕ _Projects I maintain or co-maintain._<br />
-> ➗ _Numbers for these contributions might not be directly mine, but it's fascinating trying to measure the impact my contributions can have directly and indirectly._
+> [!NOTE]
+> ➕ Projects I maintain or co-maintain.<br />
+> ➗ Numbers for these contributions might not be directly mine, but it's fascinating trying to measure the impact my contributions can have directly and indirectly.
 
-<!-- > ###### Contact me via **𝕏** or **Linkedin** — 🇺🇸 🇧🇷 -->
+> [!TIP]
+> By clicking on a project's name in the table, you'll be taken directly to my contributions to it 👨🏻‍💻
 
-<!--
----
-
-<blockquote>
-<details>
-<summary>
-Interested in my knowledge? <i>Portuguese (BR)</i> 🇧🇷
-</summary>
-
-### TypeScript
-
-Sim, por gentileza ☕️
-
-### JavaScript, Node.js, Bun e Deno
-
-Desenvolvendo desde rotinas pessoais básicas a projetos complexos  como desenvolver um _test runner_ do total zero, um _ORM_ para **Ubuntu Server** e até um _ORM_ para o **MySQL2**.
-
-Contribuindo desde tarefas simples, criando ou melhorando os tipos de projetos open-source e até resolvendo vulnerabilidades críticas de segurança de projetos amplamente usados pela comunidade.
-
-Meus projetos mais complexos costumam ter a documentação criada com **React** e **Docusaurus**, enquanto sites profissionais costumam variar desde **HTML**, **CSS** e **JavaScript** puros à combinação de frameworks com **Next**  e **SCSS** e também **Vite** para sites em que o _SEO_ não é tão importante.
-
-### Bash
-
-Minha segunda linguagem para criar automações, geralmente usando em tarefas mais complexas como automação e proxy de servidores, patches de segurança e cron jobs.
-
-### PHP
-
-Somado ao **Apache** e **Bash**, me especializei em segurança de servidores, resolvendo vulnerabilidades de segurança desde o código à borda dos servidores.
-
-Não costumo usar nenhum framework para **PHP**, pois já o considero completo o suficiente, especialmente quando somado ao **Composer**.
-
-### SQL
-
-Meu foco no **MySQL Server** se deve pelo amplo uso em hospedagens compartilhadas. Atualmente, tenho o grande prazer se ser co-mantenedor no **MySQL2**, um dos maiores projetos para comunicar o **JavaScript** com o **MySQL Server**.
-
-### Containers
-
-Especialmente usado para testes e automações de ambientes, também já desenvolvi uma simulação de VPS e EC2 (AWS) locais, sem necessidade de internet e muito menos gastar nada. Quando em produção, normalmente o trabalho pesado é feito em **Bash** e os containers apenas garantem a praticidade de orquestrar os serviços.
-
-### SCSS
-
-Minha escolha fiel ao **SCSS** se deve a poder utilizar a sintaxe nativa do **CSS** com um _superset_, como se ele fosse um **TypeScript** do **CSS**.
-
-</details>
-</blockquote>
--->
+- Contact me via [**Linkedin**](https://www.linkedin.com/in/wellwelwel/) — 🇧🇷 🇺🇸
