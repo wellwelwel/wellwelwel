@@ -1,11 +1,5 @@
 #### I'm working on [**Poku**](https://github.com/wellwelwel/poku?tab=readme-ov-file#readme) 🐷, an innovative test runner.
 
-<!--
-<a href="https://github.com/wellwelwel/poku">
-  <img align="right" width="128" src="https://raw.githubusercontent.com/wellwelwel/poku/main/.github/assets/readme/poku.svg" />
-</a>
--->
-
 > _Give it a try and **star** the repo to show your support_ ✨
 
 ---
@@ -14,7 +8,11 @@
 
 <blockquote>
   <a href="https://www.npmjs.com/~weslley.io">
-    <img src="https://img.shields.io/npm-stat/dm/weslley.io?style=flat-square&color=6c5ce7&logo=npm&logoColor=white&label=My%20NPM%20packages%20have%20been downloaded" alt="NPM Downloads by package author">
+    <img src="https://img.shields.io/npm-stat/dm/weslley.io?style=flat-square&color=6c5ce7&logo=npm&logoColor=white&label=My%20NPM%20packages%20have%20been%20downloaded" alt="NPM Downloads by package author">
+  </a>
+  <br/>
+  <a href="https://www.npmjs.com/~weslley.io">
+    <img src="https://img.shields.io/github/stars/wellwelwel?affiliations=OWNER%2CCOLLABORATOR%2CORGANIZATION_MEMBER&style=flat-square&color=6c5ce7&logo=github&logoColor=white&label=Total%20stars%20across%20all%20the%20repositories%20I maintain" alt="Total stars across all the repositories I maintain">
   </a>
 </blockquote>
 
@@ -68,6 +66,7 @@
 </table>
 
 > [!NOTE]
+>
 > ➕ Projects I maintain or co-maintain.<br />
 > ➗ Numbers for these contributions might not be directly mine, but it's fascinating trying to measure the impact my contributions can have directly and indirectly.
 
