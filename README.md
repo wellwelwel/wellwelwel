@@ -7,13 +7,7 @@
 ##### 👨🏻‍💻 Working on _open-source_ since **2021**
 
 <blockquote>
-  <a href="https://www.npmjs.com/~weslley.io">
-    <img src="https://img.shields.io/npm-stat/dm/weslley.io?style=flat-square&color=6c5ce7&logo=npm&logoColor=white&label=My%20NPM%20packages%20have%20been%20downloaded" alt="NPM Downloads by package author">
-  </a>
-  <br/>
-  <a href="https://www.npmjs.com/~weslley.io">
-    <img src="https://img.shields.io/github/stars/wellwelwel?affiliations=OWNER%2CCOLLABORATOR%2CORGANIZATION_MEMBER&style=flat-square&color=6c5ce7&logo=github&logoColor=white&label=Total%20stars%20across%20all%20the%20repositories%20I maintain" alt="Total stars across all the repositories I maintain">
-  </a>
+  <a href="https://www.npmjs.com/~weslley.io"><img src="https://img.shields.io/npm-stat/dm/weslley.io?style=flat-square&color=6c5ce7&logo=npm&logoColor=white&label=My%20NPM%20packages%20have%20been%20downloaded" alt="NPM Downloads by package author"></a> <a href="https://www.npmjs.com/~weslley.io"><img src="https://img.shields.io/github/stars/wellwelwel?affiliations=OWNER%2CCOLLABORATOR%2CORGANIZATION_MEMBER&style=flat-square&color=6c5ce7&logo=github&logoColor=white&label=Total%20stars%20across%20all%20the%20repositories%20I maintain" alt="Total stars across all the repositories I maintain"></a>
 </blockquote>
 
 ---
