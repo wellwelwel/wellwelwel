@@ -1,12 +1,13 @@
 {
+  "type": "module",
+  "scripts": {
+    "fetch": "tsx src/fetch.ts",
+    "update": "tsx src/update.ts",
+    "svg": "tsx src/svg.ts"
+  },
   "devDependencies": {
     "@octokit/graphql": "^8.2.1",
-    "@types/node": "^22.13.13"
-  },
-  "scripts": {
-    "fetch": "bun src/fetch.ts",
-    "update": "bun src/update.ts",
-    "svg": "bun src/svg.ts"
-  },
-  "type": "module"
+    "@types/node": "^22.13.13",
+    "tsx": "^4.19.3"
+  }
 }
