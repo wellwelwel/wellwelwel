@@ -55,6 +55,6 @@ for (const [index, username] of allSponsors.entries()) {
 
 svgContent += `</svg>`;
 
-await writeFile('docs/sponsors.svg', svgContent);
+await writeFile(`docs/${process.env.NAME || 'sponsors'}.svg`, svgContent);
 
 console.log(`Sponsors: ${allSponsors.length}`);

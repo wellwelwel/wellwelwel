@@ -3,7 +3,7 @@
   "scripts": {
     "fetch": "tsx src/fetch.ts",
     "update": "tsx src/update.ts",
-    "svg": "tsx src/svg.ts",
+    "svg": "tsx src/svg.ts && NAME=sponsors-sm SIZE=40 tsx src/svg.ts",
     "lint:fix": "prettier --write ."
   },
   "license": "MIT",
