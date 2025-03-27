@@ -1,4 +1,4 @@
-const AVATAR_SIZE = 80;
+export const AVATAR_SIZE = 64;
 
 export const generateBase64 = async (username: string) => {
   const url = `https://avatars.githubusercontent.com/${username}?size=${AVATAR_SIZE}`;

@@ -1,9 +1,8 @@
 import type { SponsorsData } from './types.js';
 import { readFile, writeFile } from 'node:fs/promises';
-import { generateBase64 } from './base64.js';
+import { AVATAR_SIZE, generateBase64 } from './base64.js';
 
-const AVATAR_SIZE = 40;
-const AVATAR_MARGIN = 5;
+const AVATAR_MARGIN = 2.5;
 const SPONSORS_PER_ROW = 10;
 
 const sponsorsDataString = await readFile('./sponsors.json', 'utf8');
