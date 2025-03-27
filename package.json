@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "@octokit/graphql": "^8.2.1",
+    "@types/node": "^22.13.13"
+  },
+  "scripts": {
+    "fetch": "bun src/fetch.ts",
+    "update": "bun src/update.ts",
+    "svg": "bun src/svg.ts"
+  },
+  "type": "module"
+}
