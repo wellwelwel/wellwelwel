@@ -73,6 +73,6 @@
 
 ##### Really thanks to everyone who has supported and keeps supporting my work 💙
 
-> Also for the private ones.
+> Also for the private ones, who don't appear here 🕵
 
 <img src="https://raw.githubusercontent.com/wellwelwel/wellwelwel/refs/heads/main/sponsors.svg"/>

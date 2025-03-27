@@ -1,5 +1,5 @@
+import type { SponsorsData } from './types.js';
 import { readFile, writeFile } from 'node:fs/promises';
-import { SponsorsData } from './types.js';
 import { generateBase64 } from './base64.js';
 
 const AVATAR_SIZE = 40;
@@ -52,7 +52,7 @@ for (const [index, username] of allSponsors.entries()) {
   svgContent += `<a href="https://github.com/${username}" target="_blank"><image x="${x}" y="${y}" width="${AVATAR_SIZE}" height="${AVATAR_SIZE}" preserveAspectRatio="xMidYMid slice" clip-path="url(#clip-${index})" xlink:href="data:image/png;base64,${await generateBase64(username)}" ><title>${username}</title></image><circle cx="${centerX}" cy="${centerY}" r="${
     AVATAR_SIZE / 2
   }" fill="none" /></a>`;
-};
+}
 
 svgContent += `</svg>`;
 

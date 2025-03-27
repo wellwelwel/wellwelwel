@@ -1,16 +1,16 @@
-// Based in https://github.com/privatenumber/privatenumber/blob/b67e403d65b63681acd2123e52210806cee23ad9/scripts/fetch-sponsors.ts
+// Adapted from https://github.com/privatenumber/privatenumber/blob/b67e403d65b63681acd2123e52210806cee23ad9/scripts/fetch-sponsors.ts
 
-import { readFile, writeFile } from 'node:fs/promises';
 import type {
-  GraphQlResult,
   GitHubGraphQlPageInfo,
+  GraphQlResult,
   SponsorEntity,
   SponsorsData,
 } from './types.js';
+import { readFile, writeFile } from 'node:fs/promises';
 
 const getAllPages = async <
   Property extends string,
-  Fetch extends (cursor?: string) => Promise<GraphQlResult<Property, unknown>>
+  Fetch extends (cursor?: string) => Promise<GraphQlResult<Property, unknown>>,
 >(
   property: Property,
   getPage: Fetch
