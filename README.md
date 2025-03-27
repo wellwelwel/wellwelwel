@@ -75,4 +75,4 @@
 
 > Also for the private ones, who don't appear here 🕵
 
-[![Sponsors](https://raw.githubusercontent.com/wellwelwel/wellwelwel/refs/heads/main/sponsors.svg)](https://github.com/sponsors/wellwelwel)
+[![Sponsors](./docs/sponsors.svg)](https://github.com/sponsors/wellwelwel)
