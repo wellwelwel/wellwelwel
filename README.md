@@ -68,3 +68,11 @@
 > By clicking on a project's name in the table, you'll be taken directly to my contributions to it 👨🏻‍💻
 
 - Contact me via [**LinkedIn**](https://www.linkedin.com/in/wellwelwel/) — 🇧🇷 🇺🇸
+
+---
+
+##### Really thanks to everyone who has supported and keeps supporting my work 💙
+
+> Also for the private ones.
+
+<img src="https://raw.githubusercontent.com/wellwelwel/wellwelwel/refs/heads/main/sponsors.svg"/>
