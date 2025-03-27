@@ -71,8 +71,10 @@
 
 ---
 
-##### 🥳 Really thanks to everyone who has supported and keeps supporting my work
+### 🥳 Sponsors
 
-> Also for the private ones, who don't appear here 🕵
+Really thanks <strong>to everyone</strong> who has supported and keeps supporting my work.
 
-[![Sponsors](https://wellwelwel.github.io/wellwelwel/sponsors.svg)](https://github.com/sponsors/wellwelwel)
+> _Also for the private ones, who don't appear here_ 🕵
+
+[![Sponsors](https://wellwelwel.github.io/wellwelwel/sponsors.svg?v=1)](https://github.com/sponsors/wellwelwel)
