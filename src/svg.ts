@@ -7,16 +7,16 @@ const SPONSORS_PER_ROW = 10;
 
 const sponsorsDataString = await readFile('./sponsors.json', 'utf8');
 const data = JSON.parse(sponsorsDataString) as SponsorsData;
-
 const allSponsors = [...data.organizations, ...data.users];
 const rows = Math.ceil(allSponsors.length / SPONSORS_PER_ROW);
+const maxWidth = 890;
 
 const svgWidth =
   (AVATAR_SIZE + AVATAR_MARGIN * 2) *
   Math.min(allSponsors.length, SPONSORS_PER_ROW);
 const svgHeight = (AVATAR_SIZE + AVATAR_MARGIN * 2) * rows;
 
-let svgContent = `<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg width="${svgWidth}" height="${svgHeight}" viewBox="0 0 ${svgWidth} ${svgHeight}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title>GitHub Sponsors</title>`;
+let svgContent = `<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg width="${maxWidth}" height="${svgHeight}" viewBox="0 0 ${maxWidth} ${svgHeight}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title>GitHub Sponsors</title>`;
 
 svgContent += `  <defs>`;
 
