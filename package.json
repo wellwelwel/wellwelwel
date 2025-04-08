@@ -1,8 +1,7 @@
 {
   "type": "module",
   "scripts": {
-    "fetch": "tsx src/fetch.ts",
-    "update": "tsx src/update.ts",
+    "fetch": "tsx --env-file-if-exists=.env src/fetch.ts",
     "svg": "tsx src/svg.ts && NAME=sponsors-sm SIZE=40 tsx src/svg.ts",
     "lint:fix": "prettier --write ."
   },
