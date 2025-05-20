@@ -17,9 +17,6 @@ jobs:
     steps:
       - name: ➕ Actions - Checkout
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.PAT }}
-          persist-credentials: true
 
       - name: ➕ Actions - Setup Node.js
         uses: actions/setup-node@v4
@@ -63,5 +60,5 @@ jobs:
           git add .
           git commit -m "chore: update sponsors"
           git push origin HEAD:refs/heads/main
-        # env:
-        #   GITHUB_TOKEN: ${{ secrets.PAT }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
