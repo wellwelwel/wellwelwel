@@ -37,6 +37,7 @@ jobs:
         run: |
           npm run fetch
           npm run svg
+          npm run lint:fix
         env:
           GITHUB_TOKEN: ${{ secrets.API }}
 
