@@ -34,6 +34,8 @@ jobs:
         run: |
           npm run fetch
           npm run svg
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
 
       - name: ⚙️ Configuring Git
         run: |
