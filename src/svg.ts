@@ -7,12 +7,7 @@ const SPONSORS_PER_ROW = 10;
 
 const sponsorsDataString = await readFile('./sponsors.json', 'utf8');
 const data: SponsorsData = JSON.parse(sponsorsDataString);
-const allSponsors = [
-  ...data.active.organizations,
-  ...data.active.users,
-  ...data.past.organizations,
-  ...data.past.users,
-];
+const allSponsors = [...data.active, ...data.past];
 const rows = Math.ceil(allSponsors.length / SPONSORS_PER_ROW);
 const maxWidth = 890;
 

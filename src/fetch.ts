@@ -9,17 +9,11 @@ const allNodes: SponsorNode[] = [];
 
 for (const page of resultPages) allNodes.push(...page.nodes);
 
-const { activeUsers, activeOrgs, pastUsers, pastOrgs } = sortSponsors(allNodes);
+const { active, past } = sortSponsors(allNodes);
 
 const data: SponsorsData = {
-  active: {
-    organizations: activeOrgs,
-    users: activeUsers,
-  },
-  past: {
-    organizations: pastOrgs,
-    users: pastUsers,
-  },
+  active,
+  past,
   fetched: new Date().toISOString(),
 };
 

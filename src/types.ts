@@ -27,21 +27,13 @@ export type SponsorNode = {
 
 export type SponsorsData = {
   fetched: string;
-  active: {
-    users: string[];
-    organizations: string[];
-  };
-  past: {
-    users: string[];
-    organizations: string[];
-  };
+  active: string[];
+  past: string[];
 };
 
 export type SortedSponsors = {
-  activeUsers: string[];
-  activeOrgs: string[];
-  pastUsers: string[];
-  pastOrgs: string[];
+  active: string[];
+  past: string[];
 };
 
 export type NodeWithValue = {
