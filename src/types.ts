@@ -12,6 +12,11 @@ export type GraphQlResult<Property extends string, T> = {
   };
 };
 
+export type NodeWithValue = {
+  login: string;
+  value: number;
+};
+
 export type SponsorType = 'User' | 'Organization';
 
 export type SponsorNode = {
@@ -25,18 +30,11 @@ export type SponsorNode = {
   } | null;
 };
 
-export type SponsorsData = {
-  fetched: string;
-  active: string[];
-  past: string[];
-};
-
 export type SortedSponsors = {
   active: string[];
   past: string[];
 };
 
-export type NodeWithValue = {
-  login: string;
-  value: number;
-};
+export type SponsorsData = {
+  fetched: string;
+} & SortedSponsors;

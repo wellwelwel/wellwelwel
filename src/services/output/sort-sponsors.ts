@@ -4,6 +4,9 @@ import type {
   SponsorNode,
 } from '../../types.js';
 
+export const sortByValueDesc = (a: NodeWithValue, b: NodeWithValue) =>
+  b.value - a.value;
+
 export const sortSponsors = (nodes: SponsorNode[]): SortedSponsors => {
   const active: NodeWithValue[] = [];
   const past: NodeWithValue[] = [];
@@ -12,10 +15,8 @@ export const sortSponsors = (nodes: SponsorNode[]): SortedSponsors => {
     const sponsor = node.sponsorEntity;
     if (!sponsor?.login) continue;
 
-    if (sponsor.__typename !== 'Organization' && sponsor.__typename !== 'User')
-      continue;
-
     const value = node.tier?.monthlyPriceInDollars ?? 0;
+    if (value <= 0) continue;
 
     if (node.isActive) {
       active.push({ login: sponsor.login, value });
@@ -24,9 +25,6 @@ export const sortSponsors = (nodes: SponsorNode[]): SortedSponsors => {
 
     past.push({ login: sponsor.login, value });
   }
-
-  const sortByValueDesc = (a: NodeWithValue, b: NodeWithValue) =>
-    b.value - a.value;
 
   active.sort(sortByValueDesc);
   past.sort(sortByValueDesc);
