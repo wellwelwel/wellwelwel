@@ -6,8 +6,13 @@ const AVATAR_MARGIN = 2.5;
 const SPONSORS_PER_ROW = 10;
 
 const sponsorsDataString = await readFile('./sponsors.json', 'utf8');
-const data = JSON.parse(sponsorsDataString) as SponsorsData;
-const allSponsors = [...data.organizations, ...data.users];
+const data: SponsorsData = JSON.parse(sponsorsDataString);
+const allSponsors = [
+  ...data.active.organizations,
+  ...data.active.users,
+  ...data.past.organizations,
+  ...data.past.users,
+];
 const rows = Math.ceil(allSponsors.length / SPONSORS_PER_ROW);
 const maxWidth = 890;
 

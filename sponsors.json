@@ -1,11 +1,11 @@
 {
-  "users": [
-    "henrik561",
-    "Fernanda-Kipper",
-    "DevJofre",
-    "g4brielklein",
-    "mrgreentm"
-  ],
-  "organizations": [],
-  "fetched": "2025-05-20T17:00:54.058Z"
+  "active": {
+    "organizations": [],
+    "users": ["Fernanda-Kipper", "g4brielklein", "mrgreentm"]
+  },
+  "past": {
+    "organizations": [],
+    "users": ["henrik561", "DevJofre"]
+  },
+  "fetched": "2025-05-20T19:35:46.024Z"
 }

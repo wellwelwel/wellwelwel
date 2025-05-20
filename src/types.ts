@@ -14,17 +14,37 @@ export type GraphQlResult<Property extends string, T> = {
 
 export type SponsorType = 'User' | 'Organization';
 
-export type SponsorEntity = {
-  nodes: {
-    sponsorEntity: {
-      login: string;
-      __typename: SponsorType;
-    };
-  }[];
+export type SponsorNode = {
+  sponsorEntity: {
+    login: string;
+    __typename: SponsorType;
+  } | null;
+  isActive: boolean;
+  tier: {
+    monthlyPriceInDollars: number;
+  } | null;
 };
 
 export type SponsorsData = {
-  users: string[];
-  organizations: string[];
-  fetched: Date;
+  fetched: string;
+  active: {
+    users: string[];
+    organizations: string[];
+  };
+  past: {
+    users: string[];
+    organizations: string[];
+  };
+};
+
+export type SortedSponsors = {
+  activeUsers: string[];
+  activeOrgs: string[];
+  pastUsers: string[];
+  pastOrgs: string[];
+};
+
+export type NodeWithValue = {
+  login: string;
+  value: number;
 };
