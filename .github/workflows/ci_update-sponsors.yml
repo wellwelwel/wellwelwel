@@ -5,6 +5,9 @@ on:
     - cron: '0 0 * * *'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   update-sponsors:
     runs-on: ubuntu-latest
@@ -14,6 +17,9 @@ jobs:
     steps:
       - name: ➕ Actions - Checkout
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT }}
+          persist-credentials: true
 
       - name: ➕ Actions - Setup Node.js
         uses: actions/setup-node@v4
@@ -35,12 +41,12 @@ jobs:
           npm run fetch
           npm run svg
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.API }}
 
       - name: ⚙️ Configuring Git
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git config --global user.name 'wellwelwel'
+          git config --global user.email '${{ secrets.EMAIL }}'
 
       - name: 🔎 Checking for Changes
         id: check_changes
@@ -57,5 +63,5 @@ jobs:
           git add .
           git commit -m "chore: update sponsors"
           git push origin HEAD:refs/heads/main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # env:
+        #   GITHUB_TOKEN: ${{ secrets.PAT }}
