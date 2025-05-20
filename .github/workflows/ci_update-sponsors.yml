@@ -35,7 +35,7 @@ jobs:
           npm run fetch
           npm run svg
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
+          GITHUB_TOKEN: ${{ secrets.API }}
 
       - name: ⚙️ Configuring Git
         run: |
