@@ -1,0 +1,59 @@
+name: '💙 Sponsors'
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  update-sponsors:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    if: github.event.repository.fork == false
+    name: Update
+    steps:
+      - name: ➕ Actions - Checkout
+        uses: actions/checkout@v4
+
+      - name: ➕ Actions - Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+
+      - name: ➕ Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: npm-linux-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-linux-
+
+      - name: 📦 Installing Dependencies
+        run: npm ci
+
+      - name: ⏫ Updating Sponsors
+        run: |
+          npm run fetch
+          npm run svg
+
+      - name: ⚙️ Configuring Git
+        run: |
+          git config --global user.name 'wellwelwel'
+          git config --global user.email '${{ secrets.EMAIL }}'
+
+      - name: 🔎 Checking for Changes
+        id: check_changes
+        run: |
+          if git diff-index --quiet HEAD --; then
+            echo "changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 🚀 Commiting and Pushing Changes
+        if: steps.check_changes.outputs.changes == 'true'
+        run: |
+          git add .
+          git commit -m "chore: update sponsors"
+          git push origin HEAD:refs/heads/main
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
