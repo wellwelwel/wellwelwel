@@ -17,12 +17,9 @@ export type NodeWithValue = {
   value: number;
 };
 
-export type SponsorType = 'User' | 'Organization';
-
 export type SponsorNode = {
   sponsorEntity: {
     login: string;
-    __typename: SponsorType;
   } | null;
   isActive: boolean;
   tier: {

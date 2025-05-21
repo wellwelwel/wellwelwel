@@ -23,7 +23,6 @@ export const getSponsors = async (
             isActive
             tier { monthlyPriceInDollars }
             sponsorEntity {
-              __typename
               ... on User { login }
               ... on Organization { login }
             }
