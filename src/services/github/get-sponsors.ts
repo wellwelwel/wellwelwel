@@ -1,4 +1,4 @@
-import type { GraphQlResult, SponsorNode } from '../../types.js';
+import type { GraphQlResult, SponsorNode } from '../../sponsors/types.js';
 
 export const getSponsors = async (
   cursor?: string

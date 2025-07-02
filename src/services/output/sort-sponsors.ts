@@ -2,7 +2,7 @@ import type {
   NodeWithValue,
   SortedSponsors,
   SponsorNode,
-} from '../../types.js';
+} from '../../sponsors/types.js';
 
 export const sortByValueDesc = (a: NodeWithValue, b: NodeWithValue) =>
   b.value - a.value;

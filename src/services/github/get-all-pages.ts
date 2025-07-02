@@ -1,4 +1,7 @@
-import type { GitHubGraphQlPageInfo, GraphQlResult } from '../../types.js';
+import type {
+  GitHubGraphQlPageInfo,
+  GraphQlResult,
+} from '../../sponsors/types.js';
 
 export const getAllPages = async <
   Property extends string,

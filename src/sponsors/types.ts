@@ -33,5 +33,5 @@ export type SortedSponsors = {
 };
 
 export type SponsorsData = {
-  fetched: string;
+  fetched?: string;
 } & SortedSponsors;

@@ -14,7 +14,7 @@ const { active, past } = sortSponsors(allNodes);
 const data: SponsorsData = {
   active,
   past,
-  fetched: new Date().toISOString(),
+  // fetched: new Date().toISOString(),
 };
 
 await writeFile('./sponsors.json', JSON.stringify(data), 'utf8');
