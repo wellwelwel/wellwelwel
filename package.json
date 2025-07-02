@@ -1,8 +1,8 @@
 {
   "type": "module",
   "scripts": {
-    "fetch": "tsx --env-file-if-exists=.env src/fetch.ts",
-    "svg": "tsx src/svg.ts && NAME=sponsors-sm SIZE=40 tsx src/svg.ts",
+    "fetch": "tsx --env-file-if-exists=.env src/sponsors/fetch.ts",
+    "svg": "tsx src/sponsors/svg.ts && NAME=sponsors-sm SIZE=40 tsx src/sponsors/svg.ts",
     "lint:fix": "prettier --write ."
   },
   "license": "MIT",
