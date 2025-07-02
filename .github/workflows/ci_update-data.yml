@@ -1,4 +1,4 @@
-name: '💙 Sponsors'
+name: '🔄 Update Data'
 
 on:
   schedule:
@@ -9,7 +9,7 @@ permissions:
   contents: write
 
 jobs:
-  update-sponsors:
+  update-data:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     if: github.event.repository.fork == false
@@ -33,10 +33,11 @@ jobs:
       - name: 📦 Installing Dependencies
         run: npm ci
 
-      - name: ⏫ Updating Sponsors
+      - name: ⏫ Updating Data
         run: |
           npm run fetch
           npm run svg
+          npm run stats
           npm run lint:fix
         env:
           GITHUB_TOKEN: ${{ secrets.API }}
@@ -59,7 +60,7 @@ jobs:
         if: steps.check_changes.outputs.changes == 'true'
         run: |
           git add .
-          git commit -m "chore: update sponsors"
+          git commit -m "chore: update data"
           git push origin HEAD:refs/heads/main
         env:
           GITHUB_TOKEN: ${{ secrets.PAT }}
