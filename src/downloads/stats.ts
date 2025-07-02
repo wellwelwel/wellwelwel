@@ -7,7 +7,7 @@ const data = {
   packages: await npm.packages(),
   downloadsPerMonth: await npm.downloadsPerMonth(),
   downloadsPerYear: await npm.downloadsPerYear(),
-  // fetched: new Date().toISOString(),
+  fetched: new Date().toISOString(),
 };
 
 if (data.downloadsPerMonth.value > 0 && data.downloadsPerYear.value > 0)
