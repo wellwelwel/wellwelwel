@@ -5,7 +5,7 @@ import { AVATAR_SIZE, generateBase64 } from './base64.js';
 const AVATAR_MARGIN = 2.5;
 const SPONSORS_PER_ROW = 10;
 
-const sponsorsDataString = await readFile('./sponsors.json', 'utf8');
+const sponsorsDataString = await readFile('./docs/sponsors.json', 'utf8');
 const { active, past }: SponsorsData = JSON.parse(sponsorsDataString);
 const allSponsors = [...active, ...past];
 const rows = Math.ceil(allSponsors.length / SPONSORS_PER_ROW);

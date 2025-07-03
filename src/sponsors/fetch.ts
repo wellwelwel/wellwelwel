@@ -17,4 +17,4 @@ const data: SponsorsData = {
   fetched: new Date().toISOString(),
 };
 
-await writeFile('./sponsors.json', JSON.stringify(data), 'utf8');
+await writeFile('./docs/sponsors.json', JSON.stringify(data), 'utf8');
