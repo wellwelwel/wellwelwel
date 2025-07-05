@@ -1,9 +1,11 @@
 import type { SponsorsData } from './types.js';
 import { readFile, writeFile } from 'node:fs/promises';
+import { env } from 'node:process';
 import { AVATAR_SIZE, generateBase64 } from './base64.js';
 
 const AVATAR_MARGIN = 2.5;
 const SPONSORS_PER_ROW = 10;
+const file = `docs/${env.NAME || 'sponsors'}.svg`;
 
 const sponsorsDataString = await readFile('./docs/sponsors.json', 'utf8');
 const { active, past }: SponsorsData = JSON.parse(sponsorsDataString);
@@ -55,6 +57,5 @@ for (const [index, username] of allSponsors.entries()) {
 
 svgContent += `</svg>`;
 
-await writeFile(`docs/${process.env.NAME || 'sponsors'}.svg`, svgContent);
-
-console.log(`Sponsors: ${allSponsors.length}`);
+console.log(`${file}:`, allSponsors);
+writeFile(file, svgContent);

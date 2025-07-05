@@ -10,5 +10,7 @@ const data = {
   fetched: new Date().toISOString(),
 };
 
+console.log(data);
+
 if (data.downloadsPerMonth.value > 0 && data.downloadsPerYear.value > 0)
-  await writeFile('./docs/stats.json', JSON.stringify(data), 'utf8');
+  writeFile('./docs/stats.json', JSON.stringify(data), 'utf8');
