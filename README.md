@@ -78,8 +78,6 @@
   </tbody>
 </table>
 
-- Contact me via [**LinkedIn**](https://www.linkedin.com/in/wellwelwel/) — 🇧🇷 🇺🇸
-
 ---
 
 ### 🥳 Sponsors
@@ -89,3 +87,7 @@ Really thanks <strong>to everyone</strong> who has supported and keeps supportin
 > _Also for the private ones, who don't appear here_ 🕵
 
 [![Sponsors](https://wellwelwel.github.io/wellwelwel/sponsors-sm.svg?v=1)](https://github.com/sponsors/wellwelwel)
+
+---
+
+Contact me via [**LinkedIn**](https://www.linkedin.com/in/wellwelwel/) — 🇧🇷 🇺🇸
