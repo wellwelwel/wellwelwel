@@ -7,7 +7,7 @@
 ##### 👨🏻‍💻 Working on _open-source_ since **2021**
 
 <blockquote>
-  <a href="https://www.npmjs.com/~weslley.io"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fwellwelwel.github.io%2Fwellwelwel%2Fstats.json&query=%24.downloadsPerYear.label&style=flat-square&logo=npm&logoColor=white&label=My%20NPM%20packages%20have%20been%20downloaded&color=6c5ce7" alt="NPM Downloads by package author"></a>
+  <a href="https://www.npmjs.com/~weslley.io"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fwellwelwel.github.io%2Fwellwelwel%2Fstats.json&query=%24.downloadsPerYear.label&style=flat-square&logo=npm&logoColor=white&label=My%20NPM%20packages%20have%20been%20downloaded&color=553fff" alt="NPM Downloads by package author"></a>
 </blockquote>
 
 ---
@@ -29,18 +29,18 @@
       <td>🐬 PDO-style SQL named placeholders to unnamed compiler.</td>
     </tr>
     <tr>
-      <td><a href="https://github.com/mysqljs/aws-ssl-profiles/pulls?q=is:merged+author:wellwelwel">AWS SSL Profiles</a></td>
-      <td><a href="https://www.npmjs.com/package/aws-ssl-profiles"><img src="https://img.shields.io/npm/dm/aws-ssl-profiles.svg?style=flat-square&color=6c5ce7&label=&logo=npm&logoColor=white" alt="Downloads"></a></td>
+      <td><a href="https://github.com/mysqljs/aws-ssl-profiles/pulls?q=is:merged+author:wellwelwel">AWS SSL Profiles</a> *️</td>
+      <td><a href="https://www.npmjs.com/package/aws-ssl-profiles"><img src="https://img.shields.io/npm/dm/aws-ssl-profiles.svg?style=flat-square&color=553fff&label=&logo=npm&logoColor=white" alt="Downloads"></a></td>
       <td>📜 AWS RDS SSL certificates bundles <i>(created under <a href="https://github.com/mysqljs">mysqljs</a> organization)</i>.</td>
     </tr>
     <tr>
-      <td><a href="https://github.com/wellwelwel/lru.min/pulls?q=is:merged+author:wellwelwel">lru.min</a></td>
-      <td><a href="https://www.npmjs.com/package/lru.min"><img src="https://img.shields.io/npm/dm/lru.min.svg?style=flat-square&color=6c5ce7&label=&logo=npm&logoColor=white" alt="Downloads"></a></td>
+      <td><a href="https://github.com/wellwelwel/lru.min/pulls?q=is:merged+author:wellwelwel">lru.min</a> *️</td>
+      <td><a href="https://www.npmjs.com/package/lru.min"><img src="https://img.shields.io/npm/dm/lru.min.svg?style=flat-square&color=553fff&label=&logo=npm&logoColor=white" alt="Downloads"></a></td>
       <td>🔥 An extremely fast and efficient <b>LRU</b> <i>in-memory</i> cache for <b>JavaScript</b>.</td>
     </tr>
     <tr>
-      <td><a href="https://github.com/wellwelwel/poku/pulls?q=is:merged+author:wellwelwel">Poku</a></td>
-      <td><a href="https://www.npmjs.com/package/poku"><img src="https://img.shields.io/npm/dm/poku.svg?style=flat-square&color=6c5ce7&label=&logo=npm&logoColor=white" alt="Downloads"></a></td>
+      <td><a href="https://github.com/wellwelwel/poku/pulls?q=is:merged+author:wellwelwel">Poku</a> *️</td>
+      <td><a href="https://www.npmjs.com/package/poku"><img src="https://img.shields.io/npm/dm/poku.svg?style=flat-square&color=553fff&label=&logo=npm&logoColor=white" alt="Downloads"></a></td>
       <td>🐷 A <i>multi-runtime</i> test runner that <a href="https://poku.io/docs/philosophy#javascript-essence-for-tests-">brings the <b>JavaScript</b> essence back to testing</a>.</td>
     </tr>
   </tbody>
