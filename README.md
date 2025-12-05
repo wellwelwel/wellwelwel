@@ -19,7 +19,7 @@
 <table>
   <tbody>
     <tr>
-      <td width="179"><a href="https://github.com/sidorares/node-mysql2/pulls?q=is:merged+author:wellwelwel">MySQL2</a></td>
+      <td width="165"><a href="https://github.com/sidorares/node-mysql2/pulls?q=is:merged+author:wellwelwel">MySQL2</a></td>
       <td width="117"><a href="https://www.npmjs.com/package/mysql2"><img src="https://img.shields.io/npm/dm/mysql2.svg?style=flat-square&color=6c5ce7&label=&logo=npm&logoColor=white" alt="Downloads"></a></td>
       <td>⚡️ Fast <b>mysqljs/mysql</b> compatible <b>MySQL</b> driver for <b>Node.js</b>.</td>
     </tr>
@@ -51,7 +51,7 @@
 <table>
   <tbody>
     <tr>
-      <td width="179"><a href="https://github.com/DefinitelyTyped/DefinitelyTyped/pulls?q=is:merged+author:wellwelwel">@types/node</a></td>
+      <td width="165"><a href="https://github.com/DefinitelyTyped/DefinitelyTyped/pulls?q=is:merged+author:wellwelwel">@types/node</a></td>
       <td width="117"><a href="https://www.npmjs.com/package/@types/node"><img src="https://img.shields.io/npm/dm/@types/node.svg?style=flat-square&color=6c5ce7&label=&logo=npm&logoColor=white" alt="Downloads"></a></td>
       <td>🐢 Node.js JavaScript runtime.</td>
     </tr>
