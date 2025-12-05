@@ -41,7 +41,7 @@
     <tr>
       <td><a href="https://github.com/wellwelwel/poku/pulls?q=is:merged+author:wellwelwel">Poku</a></td>
       <td><a href="https://www.npmjs.com/package/poku"><img src="https://img.shields.io/npm/dm/poku.svg?style=flat-square&color=6c5ce7&label=&logo=npm&logoColor=white" alt="Downloads"></a></td>
-      <td>🐷 Making testing easy for <b>Node.js</b>, <b>Bun</b>, <b>Deno</b>, and you at the same time.</td>
+      <td>🐷 Poku makes testing easy for <b>Node.js</b>, <b>Bun</b>, <b>Deno</b>, and you at the same time.</td>
     </tr>
   </tbody>
 </table>
