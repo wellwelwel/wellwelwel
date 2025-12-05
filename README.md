@@ -29,17 +29,17 @@
       <td>🐬 PDO-style SQL named placeholders to unnamed compiler.</td>
     </tr>
     <tr>
-      <td><a href="https://github.com/mysqljs/aws-ssl-profiles/pulls?q=is:merged+author:wellwelwel">AWS SSL Profiles</a> ✨</td>
+      <td><a href="https://github.com/mysqljs/aws-ssl-profiles/pulls?q=is:merged+author:wellwelwel">AWS SSL Profiles</a></td>
       <td><a href="https://www.npmjs.com/package/aws-ssl-profiles"><img src="https://img.shields.io/npm/dm/aws-ssl-profiles.svg?style=flat-square&color=6c5ce7&label=&logo=npm&logoColor=white" alt="Downloads"></a></td>
       <td>📜 AWS RDS SSL certificates bundles <i>(created under <a href="https://github.com/mysqljs">mysqljs</a> organization)</i>.</td>
     </tr>
     <tr>
-      <td><a href="https://github.com/wellwelwel/lru.min/pulls?q=is:merged+author:wellwelwel">lru.min</a> ✨</td>
+      <td><a href="https://github.com/wellwelwel/lru.min/pulls?q=is:merged+author:wellwelwel">lru.min</a></td>
       <td><a href="https://www.npmjs.com/package/lru.min"><img src="https://img.shields.io/npm/dm/lru.min.svg?style=flat-square&color=6c5ce7&label=&logo=npm&logoColor=white" alt="Downloads"></a></td>
       <td>🔥 An extremely fast and efficient <b>LRU</b> cache for <b>JavaScript</b>.</td>
     </tr>
     <tr>
-      <td><a href="https://github.com/wellwelwel/poku/pulls?q=is:merged+author:wellwelwel">Poku</a> ✨</td>
+      <td><a href="https://github.com/wellwelwel/poku/pulls?q=is:merged+author:wellwelwel">Poku</a></td>
       <td><a href="https://www.npmjs.com/package/poku"><img src="https://img.shields.io/npm/dm/poku.svg?style=flat-square&color=6c5ce7&label=&logo=npm&logoColor=white" alt="Downloads"></a></td>
       <td>🐷 Making testing easy for <b>Node.js</b>, <b>Bun</b>, <b>Deno</b>, and you at the same time.</td>
     </tr>
