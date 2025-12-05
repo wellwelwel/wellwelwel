@@ -36,12 +36,12 @@
     <tr>
       <td><a href="https://github.com/wellwelwel/lru.min/pulls?q=is:merged+author:wellwelwel">lru.min</a></td>
       <td><a href="https://www.npmjs.com/package/lru.min"><img src="https://img.shields.io/npm/dm/lru.min.svg?style=flat-square&color=6c5ce7&label=&logo=npm&logoColor=white" alt="Downloads"></a></td>
-      <td>🔥 An extremely fast and efficient <b>LRU</b> cache for <b>JavaScript</b>.</td>
+      <td>🔥 An extremely fast and efficient <b>LRU</b> <i>in-memory</i> cache for <b>JavaScript</b>.</td>
     </tr>
     <tr>
       <td><a href="https://github.com/wellwelwel/poku/pulls?q=is:merged+author:wellwelwel">Poku</a></td>
       <td><a href="https://www.npmjs.com/package/poku"><img src="https://img.shields.io/npm/dm/poku.svg?style=flat-square&color=6c5ce7&label=&logo=npm&logoColor=white" alt="Downloads"></a></td>
-      <td>🐷 Poku makes testing easy for <b>Node.js</b>, <b>Bun</b>, <b>Deno</b>, and you at the same time.</td>
+      <td>🐷 A <i>multi-runtime</i> test runner that <a href="https://poku.io/docs/philosophy#javascript-essence-for-tests-">brings the <b>JavaScript</b> essence back to testing</a>.</td>
     </tr>
   </tbody>
 </table>
