@@ -66,6 +66,11 @@
       <td>📪 ZIP code search integrated directly with Correios, ViaCEP, and other services.</td>
     </tr>
     <tr>
+      <td><a href="https://github.com/facebook/docusaurus/pulls?q=is:merged+author:wellwelwel">Docusaurus</a></td>
+      <td><a href="https://www.npmjs.com/package/docusaurus"><img src="https://img.shields.io/npm/dm/docusaurus.svg?style=flat-square&color=6c5ce7&label=&logo=npm&logoColor=white" alt="Downloads"></a></td>
+      <td>🦖 Easy to maintain open source documentation websites.</td>
+    </tr>
+    <tr>
       <td><a href="https://github.com/aashutoshrathi/word-wrap/pulls?q=is:merged+author:wellwelwel">word-wrap</a></td>
       <td><a href="https://www.npmjs.com/package/@aashutoshrathi/word-wrap"><img src="https://img.shields.io/npm/dm/@aashutoshrathi/word-wrap.svg?style=flat-square&color=6c5ce7&label=&logo=npm&logoColor=white" alt="Downloads"></a></td>
       <td>🅰 Wrap words to a specified length.</td>
