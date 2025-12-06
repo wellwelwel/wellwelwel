@@ -46,7 +46,7 @@
   </tbody>
 </table>
 
-> ***️** Project author.
+> **\*️** Project author.
 
 ##### ➗ Highlighted thrid-party contributions:
 
