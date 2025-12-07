@@ -12,7 +12,7 @@
 
 ---
 
-##### 🤝 Be welcome to check out some collaborative contributions with most impact (_PRs_)
+##### 🤝 Check out some collaborative contributions with most impact (_PRs_)
 
 ##### ➕ Featured projects I maintain:
 
