@@ -21,18 +21,23 @@ export class NPM {
 
     const downloads = await Promise.all(
       packageNames.map((packageName) =>
-        this.getShieldsIoDownloads(packageName, period)
+        this.getPackageDownloads(packageName, period)
       )
     );
 
     return downloads.reduce((sum, current) => sum + current, 0);
   }
 
-  private async getShieldsIoDownloads(
+  private async getNpmDownloads(
     packageName: string,
     period: DownloadPeriod
   ): Promise<number> {
-    const url = `https://img.shields.io/npm/${period}/${packageName}.json?cacheSeconds=${NPM.SHIELDS_IO_CACHE_SECONDS}`;
+    const periodMap: Record<DownloadPeriod, string> = {
+      dm: 'last-month',
+      dy: 'last-year',
+    };
+
+    const url = `https://api.npmjs.org/downloads/point/${periodMap[period]}/${packageName}`;
 
     try {
       const response = await fetch(url);
@@ -40,11 +45,44 @@ export class NPM {
 
       const data = await response.json();
 
-      return this.parseDownloadValue(data.value);
+      return data.downloads || 0;
     } catch (error) {
-      console.error(packageName, error);
+      console.error(`NPM API error for ${packageName}:`, error);
 
       return 0;
+    }
+  }
+
+  private async getPackageDownloads(
+    packageName: string,
+    period: DownloadPeriod
+  ): Promise<number> {
+    const url = `https://img.shields.io/npm/${period}/${packageName}.json?cacheSeconds=${NPM.SHIELDS_IO_CACHE_SECONDS}`;
+
+    try {
+      const response = await fetch(url);
+      if (!response.ok) return this.getNpmDownloads(packageName, period);
+
+      const data = await response.json();
+
+      if (
+        typeof data.value === 'string' &&
+        (/rate.?limit/i.test(data.value) ||
+          /error/i.test(data.value) ||
+          /invalid/i.test(data.value))
+      ) {
+        console.log(
+          `${packageName}: shields.io returned "${data.value}". Using NPM API fallback.`
+        );
+
+        return this.getNpmDownloads(packageName, period);
+      }
+
+      return this.parseDownloadValue(data.value);
+    } catch (error) {
+      console.log(`Shields.io error for ${packageName}:`, error);
+
+      return this.getNpmDownloads(packageName, period);
     }
   }
 
