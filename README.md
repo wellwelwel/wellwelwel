@@ -1,4 +1,4 @@
-#### I'm working on [**Poku**](https://github.com/wellwelwel/poku?tab=readme-ov-file#readme) 🐷, an innovative test runner.
+#### I've been working on [**Poku**](https://github.com/wellwelwel/poku?tab=readme-ov-file#readme) 🐷, an innovative test runner.
 
 > _Give it a try and **star** the repo to show your support_ ✨
 
