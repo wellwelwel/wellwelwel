@@ -39,6 +39,11 @@
       <td>📜 AWS RDS SSL certificates bundles <i>(created under <a href="https://github.com/mysqljs">mysqljs</a> organization)</i>.</td>
     </tr>
     <tr>
+      <td><a href="https://github.com/mysqljs/sql-escaper/pulls?q=is:merged+author:wellwelwel">SQL Escaper</a></td>
+      <td><a href="https://www.npmjs.com/package/sql-escaper"><img src="https://img.shields.io/npm/dm/sql-escaper.svg?style=flat-square&color=6d3ffc&label=&logo=npm&logoColor=white" alt="Downloads"></a></td>
+      <td>🛡️ Faster AST-based SQL escape and format <i>(created under <a href="https://github.com/mysqljs">mysqljs</a> organization)</i>.</td>
+    </tr>
+    <tr>
       <td><a href="https://github.com/wellwelwel/poku/pulls?q=is:merged+author:wellwelwel">Poku</a></td>
       <td><a href="https://www.npmjs.com/package/poku"><img src="https://img.shields.io/npm/dm/poku.svg?style=flat-square&color=6d3ffc&label=&logo=npm&logoColor=white" alt="Downloads"></a></td>
       <td>🐷 A <i>multi-runtime</i> test runner that <a href="https://poku.io/docs/philosophy#javascript-essence-for-tests-">brings the <b>JavaScript</b> essence back to testing</a>.</td>
