@@ -22,13 +22,5 @@
     "<BUILTIN_MODULES>",
     "<THIRD_PARTY_MODULES>",
     "^[.]"
-  ],
-  "overrides": [
-    {
-      "files": "*.jsonc",
-      "options": {
-        "trailingComma": "none"
-      }
-    }
   ]
 }

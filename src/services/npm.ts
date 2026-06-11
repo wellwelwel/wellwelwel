@@ -1,4 +1,17 @@
-type DownloadPeriod = 'dm' | 'dy';
+import type { DailyDownloads, DownloadsHistory } from './downloads-history.js';
+import { readFile, writeFile } from 'node:fs/promises';
+import {
+  keepSince,
+  newestDay,
+  recordableUntil,
+  recordDays,
+  shiftDays,
+  sumSince,
+  toDay,
+  withUnsettledTail,
+} from './downloads-history.js';
+
+type Period = 'month' | 'year';
 
 type DownloadInfo = {
   value: number;
@@ -7,107 +20,134 @@ type DownloadInfo = {
 
 export class NPM {
   private readonly username: string;
-  private static readonly PERIODS_REGEX = /month|year/gi;
-  private static readonly SHIELDS_IO_CACHE_SECONDS = 1;
+  private readonly historyPath: string;
   private static readonly SEARCH_PAGE_SIZE = 250;
+  private static readonly BACKFILL_DAYS = 14;
+  private static readonly SETTLE_DAYS = 2;
   private cachedPackages: string[] | null = null;
+  private cachedDownloads: DownloadsHistory | null = null;
 
-  constructor(username: string) {
+  constructor(username: string, historyPath = './docs/downloads-history.json') {
     this.username = username;
+    this.historyPath = historyPath;
   }
 
-  private async sumDownloads(period: DownloadPeriod): Promise<number> {
-    const packageNames = await this.packages();
+  private periodStart(period: Period): string {
+    const start = new Date();
 
-    const downloads = await Promise.all(
-      packageNames.map((packageName) =>
-        this.getPackageDownloads(packageName, period)
-      )
-    );
+    if (period === 'month') start.setMonth(start.getMonth() - 1);
+    else start.setFullYear(start.getFullYear() - 1);
 
-    return downloads.reduce((sum, current) => sum + current, 0);
+    return toDay(start);
   }
 
-  private async getNpmDownloads(
+  private windowStart(recorded: DailyDownloads | undefined): string {
+    const yearStart = this.periodStart('year');
+    const newest = newestDay(recorded ?? Object.create(null));
+
+    if (!newest) return yearStart;
+
+    const overlapStart = shiftDays(newest, -NPM.BACKFILL_DAYS);
+
+    return overlapStart > yearStart ? overlapStart : yearStart;
+  }
+
+  private async fetchDailyDownloads(
     packageName: string,
-    period: DownloadPeriod
-  ): Promise<number> {
-    const periodMap: Record<DownloadPeriod, string> = {
-      dm: 'last-month',
-      dy: 'last-year',
-    };
-
-    const url = `https://api.npmjs.org/downloads/point/${periodMap[period]}/${packageName}`;
+    start: string
+  ): Promise<DailyDownloads> {
+    const range = `${start}:${toDay(new Date())}`;
+    const url = `https://api.npmjs.org/downloads/range/${range}/${packageName}`;
 
     try {
       const response = await fetch(url);
-      if (!response.ok) return 0;
+
+      if (!response.ok) {
+        console.error(
+          `NPM API error for ${packageName}: HTTP ${response.status}.`
+        );
+
+        return Object.create(null);
+      }
 
       const data = await response.json();
+      const daily: DailyDownloads = Object.create(null);
 
-      return data.downloads || 0;
+      for (const { day, downloads } of data.downloads)
+        if (downloads > 0) daily[day] = downloads;
+
+      return daily;
     } catch (error) {
       console.error(`NPM API error for ${packageName}:`, error);
 
-      return 0;
+      return Object.create(null);
     }
   }
 
-  private async getPackageDownloads(
-    packageName: string,
-    period: DownloadPeriod
-  ): Promise<number> {
-    const url = `https://img.shields.io/npm/${period}/${packageName}.json?cacheSeconds=${NPM.SHIELDS_IO_CACHE_SECONDS}`;
-
+  private async loadHistory(): Promise<DownloadsHistory> {
     try {
-      const response = await fetch(url);
-      if (!response.ok) return this.getNpmDownloads(packageName, period);
+      return JSON.parse(await readFile(this.historyPath, 'utf8'));
+    } catch {
+      return Object.create(null);
+    }
+  }
 
-      const data = await response.json();
+  private async refreshDownloads(): Promise<DownloadsHistory> {
+    if (this.cachedDownloads) return this.cachedDownloads;
 
-      if (
-        typeof data.value === 'string' &&
-        (/rate.?limit/i.test(data.value) ||
-          /error/i.test(data.value) ||
-          /invalid/i.test(data.value))
-      ) {
-        console.log(
-          `${packageName}: shields.io returned "${data.value}". Using NPM API fallback.`
+    const previous = await this.loadHistory();
+    const packageNames = await this.packages();
+    const yearStart = this.periodStart('year');
+    const settledUntil = shiftDays(toDay(new Date()), -NPM.SETTLE_DAYS);
+
+    const persistent: DownloadsHistory = Object.assign(
+      Object.create(null),
+      previous
+    );
+    const countable: DownloadsHistory = Object.assign(
+      Object.create(null),
+      previous
+    );
+
+    await Promise.all(
+      packageNames.map(async (packageName) => {
+        const fetched = await this.fetchDailyDownloads(
+          packageName,
+          this.windowStart(previous[packageName])
+        );
+        const recorded = keepSince(
+          recordDays(
+            previous[packageName],
+            fetched,
+            recordableUntil(fetched, settledUntil)
+          ),
+          yearStart
         );
 
-        return this.getNpmDownloads(packageName, period);
-      }
+        persistent[packageName] = recorded;
+        countable[packageName] = withUnsettledTail(
+          recorded,
+          fetched,
+          settledUntil
+        );
+      })
+    );
 
-      return this.parseDownloadValue(data.value);
-    } catch (error) {
-      console.log(`Shields.io error for ${packageName}:`, error);
+    await writeFile(this.historyPath, JSON.stringify(persistent), 'utf8');
 
-      return this.getNpmDownloads(packageName, period);
-    }
+    this.cachedDownloads = countable;
+
+    return countable;
   }
 
-  private parseDownloadValue(value: string): number {
-    const numberText = value.replace(NPM.PERIODS_REGEX, '');
-    const cleanNumber = numberText.replace(/[^0-9.]/g, '');
+  private async sumDownloads(period: Period): Promise<number> {
+    const downloads = await this.refreshDownloads();
 
-    const multiplier = /k/i.test(numberText)
-      ? 1_000
-      : /m/i.test(numberText)
-        ? 1_000_000
-        : /b/i.test(numberText)
-          ? 1_000_000_000
-          : 1;
-
-    return Number(cleanNumber) * multiplier;
+    return sumSince(downloads, this.periodStart(period));
   }
 
-  private formatNumber(num: number, period: DownloadPeriod): string {
-    const periods: Record<DownloadPeriod, string> = {
-      dm: 'month',
-      dy: 'year',
-    };
-
-    if (num < 1000) return `${num}/${periods[period]}`;
+  private formatNumber(num: number, period: Period): string {
+    if (num < 1000) return `${num}/${period}`;
 
     const units = [
       { value: 1e9, suffix: 'B' },
@@ -120,12 +160,12 @@ export class NPM {
         const val = num / unit.value;
 
         return val % 1 === 0
-          ? `${val.toFixed(0)}${unit.suffix}/${periods[period]}`
-          : `${val.toFixed(1).replace(/\.0$/, '')}${unit.suffix}/${periods[period]}`;
+          ? `${val.toFixed(0)}${unit.suffix}/${period}`
+          : `${val.toFixed(1).replace(/\.0$/, '')}${unit.suffix}/${period}`;
       }
     }
 
-    return `${num}/${periods[period]}`;
+    return `${num}/${period}`;
   }
 
   public async packages(): Promise<string[]> {
@@ -160,20 +200,20 @@ export class NPM {
   }
 
   public async downloadsPerMonth(): Promise<DownloadInfo> {
-    const downloads = await this.sumDownloads('dm');
+    const downloads = await this.sumDownloads('month');
 
     return {
       value: downloads,
-      label: this.formatNumber(downloads, 'dm'),
+      label: this.formatNumber(downloads, 'month'),
     };
   }
 
   public async downloadsPerYear(): Promise<DownloadInfo> {
-    const downloads = await this.sumDownloads('dy');
+    const downloads = await this.sumDownloads('year');
 
     return {
       value: downloads,
-      label: this.formatNumber(downloads, 'dy'),
+      label: this.formatNumber(downloads, 'year'),
     };
   }
 }

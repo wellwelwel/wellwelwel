@@ -1,5 +1,5 @@
 import { writeFile } from 'node:fs/promises';
-import { NPM } from 'src/services/npm.js';
+import { NPM } from '../services/npm.js';
 
 const npm = new NPM('weslley.io');
 
