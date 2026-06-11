@@ -1,13 +1,11 @@
 import type { SponsorsData } from './types.js';
-import { readFile, writeFile } from 'node:fs/promises';
-import { env } from 'node:process';
 import { AVATAR_SIZE, generateBase64 } from './base64.js';
 
 const AVATAR_MARGIN = 2.5;
 const SPONSORS_PER_ROW = 10;
-const file = `docs/${env.NAME || 'sponsors'}.svg`;
+const file = `docs/${Bun.env.NAME || 'sponsors'}.svg`;
 
-const sponsorsDataString = await readFile('./docs/sponsors.json', 'utf8');
+const sponsorsDataString = await Bun.file('./docs/sponsors.json').text();
 const { active, past }: SponsorsData = JSON.parse(sponsorsDataString);
 const allSponsors = [...active, ...past];
 const rows = Math.ceil(allSponsors.length / SPONSORS_PER_ROW);
@@ -58,4 +56,4 @@ for (const [index, username] of allSponsors.entries()) {
 svgContent += `</svg>`;
 
 console.log(`${file}:`, allSponsors);
-writeFile(file, svgContent);
+await Bun.write(file, svgContent);

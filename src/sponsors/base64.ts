@@ -1,10 +1,9 @@
-export const AVATAR_SIZE = Number(process.env.SIZE) || 64;
+export const AVATAR_SIZE = Number(Bun.env.SIZE) || 64;
 
 export const generateBase64 = async (username: string) => {
   const url = `https://avatars.githubusercontent.com/${username}?size=${AVATAR_SIZE * 2}`;
   const res = await fetch(url);
-  const arrayBuffer = await res.arrayBuffer();
-  const buffer = Buffer.from(arrayBuffer);
+  const bytes = await res.bytes();
 
-  return buffer.toString('base64');
+  return bytes.toBase64();
 };

@@ -19,27 +19,27 @@ jobs:
       - name: ➕ Actions - Checkout
         uses: actions/checkout@v4
 
-      - name: ➕ Actions - Setup Node.js
-        uses: actions/setup-node@v4
+      - name: ➕ Actions - Setup Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          node-version: '24.x'
+          bun-version: latest
 
       - name: ➕ Cache dependencies
         uses: actions/cache@v4
         with:
-          path: ~/.npm
-          key: npm-linux-${{ hashFiles('package-lock.json') }}
-          restore-keys: npm-linux-
+          path: ~/.bun/install/cache
+          key: bun-linux-${{ hashFiles('bun.lock') }}
+          restore-keys: bun-linux-
 
       - name: 📦 Installing Dependencies
-        run: npm ci
+        run: bun install --frozen-lockfile
 
       - name: ⏫ Updating Data
         run: |
-          npm run fetch
-          npm run svg
-          npm run stats
-          npm run lint:fix
+          bun run fetch
+          bun run svg
+          bun run stats
+          bun run lint:fix
         env:
           GITHUB_TOKEN: ${{ secrets.API }}
 

@@ -3,9 +3,9 @@
   "compilerOptions": {
     "rootDir": ".",
     "target": "esnext",
-    "lib": ["esnext", "dom"],
-    "moduleResolution": "nodenext",
-    "module": "nodenext",
+    "lib": ["esnext"],
+    "moduleResolution": "bundler",
+    "module": "preserve",
     "jsx": "preserve",
     "isolatedModules": true,
     "strict": true,
@@ -25,6 +25,6 @@
     "skipLibCheck": true,
     "noEmit": true,
     "noEmitOnError": true,
-    "types": ["node"]
+    "types": ["bun"]
   }
 }

@@ -35,7 +35,7 @@ export const getSponsors = async (
   const response = await fetch('https://api.github.com/graphql', {
     method: 'POST',
     headers: {
-      Authorization: `token ${process.env.GITHUB_TOKEN}`,
+      Authorization: `token ${Bun.env.GITHUB_TOKEN}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ query }),
@@ -47,7 +47,10 @@ export const getSponsors = async (
     );
   }
 
-  const result = await response.json();
+  const result = (await response.json()) as {
+    data: unknown;
+    errors?: unknown;
+  };
 
   if (result.errors)
     throw new Error(`GraphQL Error: ${JSON.stringify(result.errors)}`);

@@ -1,5 +1,4 @@
 import type { SponsorNode, SponsorsData } from './types.js';
-import { writeFile } from 'node:fs/promises';
 import { getAllPages } from '../services/github/get-all-pages.js';
 import { getSponsors } from '../services/github/get-sponsors.js';
 import { sortSponsors } from '../services/output/sort-sponsors.js';
@@ -17,4 +16,4 @@ const data: SponsorsData = {
   fetched: new Date().toISOString(),
 };
 
-await writeFile('./docs/sponsors.json', JSON.stringify(data), 'utf8');
+await Bun.write('./docs/sponsors.json', JSON.stringify(data));

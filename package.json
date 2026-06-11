@@ -1,10 +1,10 @@
 {
   "type": "module",
   "scripts": {
-    "fetch": "tsx --env-file-if-exists=.env src/sponsors/fetch.ts",
-    "stats": "tsx src/downloads/stats.ts",
-    "svg": "tsx src/sponsors/svg.ts && NAME=sponsors-sm SIZE=40 tsx src/sponsors/svg.ts",
-    "lint:fix": "prettier --write ."
+    "fetch": "bun --bun src/sponsors/fetch.ts",
+    "stats": "bun --bun src/downloads/stats.ts",
+    "svg": "bun --bun src/sponsors/svg.ts && NAME=sponsors-sm SIZE=40 bun --bun src/sponsors/svg.ts",
+    "lint:fix": "bun --bun prettier --write ."
   },
   "license": "MIT",
   "funding": {
@@ -13,9 +13,7 @@
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.7.1",
-    "@octokit/graphql": "^9.0.3",
-    "@types/node": "^25.9.3",
-    "prettier": "^3.8.4",
-    "tsx": "^4.22.4"
+    "@types/bun": "^1.3.14",
+    "prettier": "^3.8.4"
   }
 }

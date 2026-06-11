@@ -1,4 +1,3 @@
-import { writeFile } from 'node:fs/promises';
 import { NPM } from '../services/npm.js';
 
 const npm = new NPM('weslley.io');
@@ -13,4 +12,4 @@ const data = {
 console.log(data);
 
 if (data.downloadsPerMonth.value > 0 && data.downloadsPerYear.value > 0)
-  writeFile('./docs/stats.json', JSON.stringify(data), 'utf8');
+  await Bun.write('./docs/stats.json', JSON.stringify(data));

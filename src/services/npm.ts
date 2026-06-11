@@ -1,5 +1,4 @@
 import type { DailyDownloads, DownloadsHistory } from './downloads-history.js';
-import { readFile, writeFile } from 'node:fs/promises';
 import {
   keepSince,
   newestDay,
@@ -70,7 +69,9 @@ export class NPM {
         return Object.create(null);
       }
 
-      const data = await response.json();
+      const data = (await response.json()) as {
+        downloads: { day: string; downloads: number }[];
+      };
       const daily: DailyDownloads = Object.create(null);
 
       for (const { day, downloads } of data.downloads)
@@ -86,7 +87,7 @@ export class NPM {
 
   private async loadHistory(): Promise<DownloadsHistory> {
     try {
-      return JSON.parse(await readFile(this.historyPath, 'utf8'));
+      return JSON.parse(await Bun.file(this.historyPath).text());
     } catch {
       return Object.create(null);
     }
@@ -133,7 +134,7 @@ export class NPM {
       })
     );
 
-    await writeFile(this.historyPath, JSON.stringify(persistent), 'utf8');
+    await Bun.write(this.historyPath, JSON.stringify(persistent));
 
     this.cachedDownloads = countable;
 
@@ -182,10 +183,10 @@ export class NPM {
 
       if (!response.ok) throw new Error(String(response.status));
 
-      const data = await response.json();
-      const batch = data.objects.map(
-        (obj: { package: { name: string } }) => obj.package.name
-      );
+      const data = (await response.json()) as {
+        objects: { package: { name: string } }[];
+      };
+      const batch = data.objects.map((obj) => obj.package.name);
 
       names.push(...batch);
 
