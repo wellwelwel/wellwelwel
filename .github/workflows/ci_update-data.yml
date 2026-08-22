@@ -2,8 +2,14 @@ name: '🔄 Update Data'
 
 on:
   schedule:
-    - cron: '0 3 * * 1-5'
+    # - cron: '0 3 * * 1-5'
+    - cron: '0 6 * * 1-5'
+    - cron: '0 9 * * 1-5'
+    - cron: '0 12 * * 1-5'
     - cron: '0 15 * * 1-5'
+    # - cron: '0 18 * * 1-5'
+    # - cron: '0 21 * * 1-5'
+    # - cron: '0 0 * * 1-5'
   workflow_dispatch:
 
 permissions:
