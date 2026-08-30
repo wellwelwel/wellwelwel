@@ -2,6 +2,7 @@ import { NPM } from '../services/npm.js';
 
 const npm = new NPM('weslley.io', {
   coMaintained: ['mysql2', 'named-placeholders'],
+  deprecated: ['blue-spec'],
 });
 
 const data = {

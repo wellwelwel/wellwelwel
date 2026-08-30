@@ -28,23 +28,25 @@ export type GroupStats = PackageStats & {
 
 type Options = {
   coMaintained?: string[];
+  deprecated?: string[];
   historyPath?: string;
 };
 
 export class NPM {
   private readonly username: string;
   private readonly coMaintained: string[];
+  private readonly deprecated: string[];
   private readonly historyPath: string;
   private static readonly SEARCH_PAGE_SIZE = 250;
   private static readonly BACKFILL_DAYS = 14;
   private static readonly SETTLE_DAYS = 2;
   private cachedPackages: string[] | null = null;
   private cachedDownloads: DownloadsHistory | null = null;
-  private cachedHistory: DownloadsHistory | null = null;
 
   constructor(username: string, options: Options = Object.create(null)) {
     this.username = username;
     this.coMaintained = [...(options.coMaintained ?? [])].sort();
+    this.deprecated = [...(options.deprecated ?? [])].sort();
     this.historyPath = options.historyPath ?? './docs/downloads-history.json';
   }
 
@@ -110,43 +112,19 @@ export class NPM {
     }
   }
 
-  private async history(): Promise<DownloadsHistory> {
-    if (this.cachedHistory) return this.cachedHistory;
-
-    const loaded = await this.loadHistory();
-
-    this.cachedHistory = loaded;
-
-    return loaded;
-  }
-
-  private async isMaintainer(packageName: string): Promise<boolean> {
-    try {
-      const response = await fetch(`https://registry.npmjs.org/${packageName}`);
-
-      if (response.status === 404) return false;
-      if (!response.ok) return true;
-
-      const data = (await response.json()) as {
-        maintainers?: { name: string }[];
-      };
-
-      return (data.maintainers ?? []).some(
-        (maintainer) => maintainer.name === this.username
-      );
-    } catch {
-      return true;
-    }
-  }
-
   private async refreshDownloads(): Promise<DownloadsHistory> {
     if (this.cachedDownloads) return this.cachedDownloads;
 
-    const previous = await this.history();
+    const previous = await this.loadHistory();
     const packageNames = [
       ...(await this.authorPackages()),
       ...this.coMaintained,
     ];
+    const tracked = new Set(packageNames);
+
+    for (const packageName of Object.keys(previous))
+      if (!tracked.has(packageName))
+        console.warn(`"${packageName}" is recorded but no longer tracked.`);
     const yearStart = this.periodStart('year');
     const settledUntil = shiftDays(toDay(new Date()), -NPM.SETTLE_DAYS);
 
@@ -277,20 +255,14 @@ export class NPM {
   public async authorPackages(): Promise<string[]> {
     if (this.cachedPackages) return this.cachedPackages;
 
-    const searched = await this.searchPackages();
-    const remembered = Object.keys(await this.history()).filter(
-      (name) => !searched.includes(name) && !this.coMaintained.includes(name)
-    );
-    const stillAuthored = await Promise.all(
-      remembered.map(async (name) =>
-        (await this.isMaintainer(name)) ? name : null
-      )
-    );
+    const names = new Set([
+      ...(await this.searchPackages()),
+      ...this.deprecated,
+    ]);
 
-    this.cachedPackages = [
-      ...searched.filter((name) => !this.coMaintained.includes(name)),
-      ...stillAuthored.filter((name) => name !== null),
-    ].sort();
+    this.cachedPackages = [...names]
+      .filter((name) => !this.coMaintained.includes(name))
+      .sort();
 
     return this.cachedPackages;
   }
