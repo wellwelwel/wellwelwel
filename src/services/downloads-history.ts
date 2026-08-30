@@ -65,12 +65,11 @@ export const withUnsettledTail = (
   return days;
 };
 
-export const sumSince = (history: DownloadsHistory, start: string): number => {
+export const sumSince = (days: DailyDownloads, start: string): number => {
   let sum = 0;
 
-  for (const daily of Object.values(history))
-    for (const [day, downloads] of Object.entries(daily))
-      if (day >= start) sum += downloads;
+  for (const [day, downloads] of Object.entries(days))
+    if (day >= start) sum += downloads;
 
   return sum;
 };

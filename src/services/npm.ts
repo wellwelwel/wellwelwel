@@ -17,18 +17,35 @@ type DownloadInfo = {
   label: string;
 };
 
+export type PackageStats = {
+  downloadsPerMonth: DownloadInfo;
+  downloadsPerYear: DownloadInfo;
+};
+
+export type GroupStats = PackageStats & {
+  packages: Record<string, PackageStats>;
+};
+
+type Options = {
+  coMaintained?: string[];
+  historyPath?: string;
+};
+
 export class NPM {
   private readonly username: string;
+  private readonly coMaintained: string[];
   private readonly historyPath: string;
   private static readonly SEARCH_PAGE_SIZE = 250;
   private static readonly BACKFILL_DAYS = 14;
   private static readonly SETTLE_DAYS = 2;
   private cachedPackages: string[] | null = null;
   private cachedDownloads: DownloadsHistory | null = null;
+  private cachedHistory: DownloadsHistory | null = null;
 
-  constructor(username: string, historyPath = './docs/downloads-history.json') {
+  constructor(username: string, options: Options = Object.create(null)) {
     this.username = username;
-    this.historyPath = historyPath;
+    this.coMaintained = [...(options.coMaintained ?? [])].sort();
+    this.historyPath = options.historyPath ?? './docs/downloads-history.json';
   }
 
   private periodStart(period: Period): string {
@@ -93,11 +110,43 @@ export class NPM {
     }
   }
 
+  private async history(): Promise<DownloadsHistory> {
+    if (this.cachedHistory) return this.cachedHistory;
+
+    const loaded = await this.loadHistory();
+
+    this.cachedHistory = loaded;
+
+    return loaded;
+  }
+
+  private async isMaintainer(packageName: string): Promise<boolean> {
+    try {
+      const response = await fetch(`https://registry.npmjs.org/${packageName}`);
+
+      if (response.status === 404) return false;
+      if (!response.ok) return true;
+
+      const data = (await response.json()) as {
+        maintainers?: { name: string }[];
+      };
+
+      return (data.maintainers ?? []).some(
+        (maintainer) => maintainer.name === this.username
+      );
+    } catch {
+      return true;
+    }
+  }
+
   private async refreshDownloads(): Promise<DownloadsHistory> {
     if (this.cachedDownloads) return this.cachedDownloads;
 
-    const previous = await this.loadHistory();
-    const packageNames = await this.packages();
+    const previous = await this.history();
+    const packageNames = [
+      ...(await this.authorPackages()),
+      ...this.coMaintained,
+    ];
     const yearStart = this.periodStart('year');
     const settledUntil = shiftDays(toDay(new Date()), -NPM.SETTLE_DAYS);
 
@@ -141,10 +190,39 @@ export class NPM {
     return countable;
   }
 
-  private async sumDownloads(period: Period): Promise<number> {
-    const downloads = await this.refreshDownloads();
+  private downloadInfo(value: number, period: Period): DownloadInfo {
+    return { value, label: this.formatNumber(value, period) };
+  }
 
-    return sumSince(downloads, this.periodStart(period));
+  private async groupStats(packageNames: string[]): Promise<GroupStats> {
+    const downloads = await this.refreshDownloads();
+    const monthStart = this.periodStart('month');
+    const yearStart = this.periodStart('year');
+    const packages: Record<string, PackageStats> = Object.create(null);
+
+    let month = 0;
+    let year = 0;
+
+    for (const packageName of packageNames) {
+      const daily: DailyDownloads =
+        downloads[packageName] ?? Object.create(null);
+      const monthly = sumSince(daily, monthStart);
+      const yearly = sumSince(daily, yearStart);
+
+      packages[packageName] = {
+        downloadsPerMonth: this.downloadInfo(monthly, 'month'),
+        downloadsPerYear: this.downloadInfo(yearly, 'year'),
+      };
+
+      month += monthly;
+      year += yearly;
+    }
+
+    return {
+      packages,
+      downloadsPerMonth: this.downloadInfo(month, 'month'),
+      downloadsPerYear: this.downloadInfo(year, 'year'),
+    };
   }
 
   private formatNumber(num: number, period: Period): string {
@@ -169,9 +247,7 @@ export class NPM {
     return `${num}/${period}`;
   }
 
-  public async packages(): Promise<string[]> {
-    if (this.cachedPackages) return this.cachedPackages;
-
+  private async searchPackages(): Promise<string[]> {
     let from = 0;
 
     const size = NPM.SEARCH_PAGE_SIZE;
@@ -195,26 +271,35 @@ export class NPM {
       from += size;
     }
 
-    this.cachedPackages = names;
-
     return names;
   }
 
-  public async downloadsPerMonth(): Promise<DownloadInfo> {
-    const downloads = await this.sumDownloads('month');
+  public async authorPackages(): Promise<string[]> {
+    if (this.cachedPackages) return this.cachedPackages;
 
-    return {
-      value: downloads,
-      label: this.formatNumber(downloads, 'month'),
-    };
+    const searched = await this.searchPackages();
+    const remembered = Object.keys(await this.history()).filter(
+      (name) => !searched.includes(name) && !this.coMaintained.includes(name)
+    );
+    const stillAuthored = await Promise.all(
+      remembered.map(async (name) =>
+        (await this.isMaintainer(name)) ? name : null
+      )
+    );
+
+    this.cachedPackages = [
+      ...searched.filter((name) => !this.coMaintained.includes(name)),
+      ...stillAuthored.filter((name) => name !== null),
+    ].sort();
+
+    return this.cachedPackages;
   }
 
-  public async downloadsPerYear(): Promise<DownloadInfo> {
-    const downloads = await this.sumDownloads('year');
+  public async authorStats(): Promise<GroupStats> {
+    return this.groupStats(await this.authorPackages());
+  }
 
-    return {
-      value: downloads,
-      label: this.formatNumber(downloads, 'year'),
-    };
+  public async coMaintainedStats(): Promise<GroupStats> {
+    return this.groupStats(this.coMaintained);
   }
 }
