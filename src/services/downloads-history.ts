@@ -1,12 +1,13 @@
 export type DailyDownloads = Record<string, number>;
-export type DownloadsHistory = Record<string, DailyDownloads>;
+export type PackageHistory = { since: string; days: DailyDownloads };
+export type DownloadsHistory = Record<string, PackageHistory>;
 
 export const toDay = (date: Date): string => date.toISOString().slice(0, 10);
 
 export const shiftDays = (day: string, days: number): string => {
   const date = new Date(day);
 
-  date.setDate(date.getDate() + days);
+  date.setUTCDate(date.getUTCDate() + days);
 
   return toDay(date);
 };
@@ -28,7 +29,7 @@ export const recordableUntil = (
 };
 
 export const recordDays = (
-  recorded: DailyDownloads | undefined,
+  recorded: DailyDownloads,
   fetched: DailyDownloads,
   until: string
 ): DailyDownloads => {

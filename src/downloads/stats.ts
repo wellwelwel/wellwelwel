@@ -1,7 +1,7 @@
 import { NPM } from '../services/npm.js';
 
 const npm = new NPM('weslley.io', {
-  coMaintained: ['mysql2', 'named-placeholders'],
+  coMaintained: { mysql2: '2023-06-02', 'named-placeholders': '2025-12-07' },
   deprecated: ['blue-spec'],
 });
 

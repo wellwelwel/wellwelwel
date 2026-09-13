@@ -1,4 +1,8 @@
-import type { DailyDownloads, DownloadsHistory } from './downloads-history.js';
+import type {
+  DailyDownloads,
+  DownloadsHistory,
+  PackageHistory,
+} from './downloads-history.js';
 import {
   keepSince,
   newestDay,
@@ -17,35 +21,62 @@ type DownloadInfo = {
   label: string;
 };
 
-export type PackageStats = {
+type Metrics = {
   downloadsPerMonth: DownloadInfo;
   downloadsPerYear: DownloadInfo;
+  downloadsTotal: DownloadInfo;
 };
 
-export type GroupStats = PackageStats & {
+export type PackageStats = Metrics & {
+  since: string;
+};
+
+export type GroupStats = Metrics & {
+  since: string | null;
   packages: Record<string, PackageStats>;
 };
 
 type Options = {
-  coMaintained?: string[];
+  coMaintained?: Record<string, string>;
   deprecated?: string[];
   historyPath?: string;
 };
 
+const ISO_DAY = /^\d{4}-\d{2}-\d{2}$/;
+
 export class NPM {
   private readonly username: string;
-  private readonly coMaintained: string[];
+  private readonly coMaintained: Map<string, string>;
   private readonly deprecated: string[];
   private readonly historyPath: string;
   private static readonly SEARCH_PAGE_SIZE = 250;
+  private static readonly RANGE_LIMIT_DAYS = 540;
   private static readonly BACKFILL_DAYS = 14;
   private static readonly SETTLE_DAYS = 2;
+  private static readonly MAX_ATTEMPTS = 3;
+  private static readonly RETRY_DELAY_MS = 5000;
+  private static readonly UNITS = [
+    { value: 1e9, suffix: 'B' },
+    { value: 1e6, suffix: 'M' },
+    { value: 1e3, suffix: 'k' },
+  ];
   private cachedPackages: string[] | null = null;
   private cachedDownloads: DownloadsHistory | null = null;
 
   constructor(username: string, options: Options = Object.create(null)) {
+    const joined: Record<string, string> =
+      options.coMaintained ?? Object.create(null);
+
+    for (const [packageName, day] of Object.entries(joined))
+      if (!ISO_DAY.test(day))
+        throw new Error(`Invalid join day "${day}" for "${packageName}".`);
+
     this.username = username;
-    this.coMaintained = [...(options.coMaintained ?? [])].sort();
+    this.coMaintained = new Map(
+      Object.keys(joined)
+        .sort()
+        .map((packageName) => [packageName, joined[packageName]])
+    );
     this.deprecated = [...(options.deprecated ?? [])].sort();
     this.historyPath = options.historyPath ?? './docs/downloads-history.json';
   }
@@ -59,33 +90,74 @@ export class NPM {
     return toDay(start);
   }
 
-  private windowStart(recorded: DailyDownloads | undefined): string {
-    const yearStart = this.periodStart('year');
-    const newest = newestDay(recorded ?? Object.create(null));
+  private fetchStart(
+    since: string,
+    recorded: PackageHistory | undefined
+  ): string {
+    if (!recorded || since < recorded.since) return since;
 
-    if (!newest) return yearStart;
+    const newest = newestDay(recorded.days);
+
+    if (!newest) return since;
 
     const overlapStart = shiftDays(newest, -NPM.BACKFILL_DAYS);
 
-    return overlapStart > yearStart ? overlapStart : yearStart;
+    return overlapStart > since ? overlapStart : since;
   }
 
-  private async fetchDailyDownloads(
+  private async fetchThrottled(url: string): Promise<Response> {
+    for (let attempt = 1; ; attempt++) {
+      const response = await fetch(url);
+
+      if (response.status !== 429 || attempt === NPM.MAX_ATTEMPTS)
+        return response;
+
+      await Bun.sleep(NPM.RETRY_DELAY_MS * attempt);
+    }
+  }
+
+  private async fetchCreatedDay(packageName: string): Promise<string> {
+    const response = await this.fetchThrottled(
+      `https://registry.npmjs.org/${packageName}`
+    );
+
+    if (!response.ok)
+      throw new Error(
+        `NPM registry error for ${packageName}: HTTP ${response.status}.`
+      );
+
+    const { time } = (await response.json()) as { time: { created: string } };
+
+    return toDay(new Date(time.created));
+  }
+
+  private async sinceOf(
     packageName: string,
-    start: string
-  ): Promise<DailyDownloads> {
-    const range = `${start}:${toDay(new Date())}`;
-    const url = `https://api.npmjs.org/downloads/range/${range}/${packageName}`;
+    recorded: PackageHistory | undefined
+  ): Promise<string> {
+    return (
+      this.coMaintained.get(packageName) ??
+      recorded?.since ??
+      (await this.fetchCreatedDay(packageName))
+    );
+  }
+
+  private async fetchRange(
+    packageName: string,
+    from: string,
+    until: string
+  ): Promise<DailyDownloads | undefined> {
+    const url = `https://api.npmjs.org/downloads/range/${from}:${until}/${packageName}`;
 
     try {
-      const response = await fetch(url);
+      const response = await this.fetchThrottled(url);
 
       if (!response.ok) {
         console.error(
           `NPM API error for ${packageName}: HTTP ${response.status}.`
         );
 
-        return Object.create(null);
+        return undefined;
       }
 
       const data = (await response.json()) as {
@@ -100,8 +172,35 @@ export class NPM {
     } catch (error) {
       console.error(`NPM API error for ${packageName}:`, error);
 
-      return Object.create(null);
+      return undefined;
     }
+  }
+
+  private async fetchDailyDownloads(
+    packageName: string,
+    start: string
+  ): Promise<DailyDownloads | undefined> {
+    const today = toDay(new Date());
+    const daily: DailyDownloads = Object.create(null);
+
+    for (
+      let from = start;
+      from <= today;
+      from = shiftDays(from, NPM.RANGE_LIMIT_DAYS)
+    ) {
+      const until = shiftDays(from, NPM.RANGE_LIMIT_DAYS - 1);
+      const fetched = await this.fetchRange(
+        packageName,
+        from,
+        until < today ? until : today
+      );
+
+      if (!fetched) return undefined;
+
+      Object.assign(daily, fetched);
+    }
+
+    return daily;
   }
 
   private async loadHistory(): Promise<DownloadsHistory> {
@@ -118,14 +217,14 @@ export class NPM {
     const previous = await this.loadHistory();
     const packageNames = [
       ...(await this.authorPackages()),
-      ...this.coMaintained,
+      ...this.coMaintained.keys(),
     ];
     const tracked = new Set(packageNames);
 
     for (const packageName of Object.keys(previous))
       if (!tracked.has(packageName))
         console.warn(`"${packageName}" is recorded but no longer tracked.`);
-    const yearStart = this.periodStart('year');
+
     const settledUntil = shiftDays(toDay(new Date()), -NPM.SETTLE_DAYS);
 
     const persistent: DownloadsHistory = Object.assign(
@@ -137,29 +236,33 @@ export class NPM {
       previous
     );
 
-    await Promise.all(
-      packageNames.map(async (packageName) => {
-        const fetched = await this.fetchDailyDownloads(
-          packageName,
-          this.windowStart(previous[packageName])
-        );
-        const recorded = keepSince(
-          recordDays(
-            previous[packageName],
-            fetched,
-            recordableUntil(fetched, settledUntil)
-          ),
-          yearStart
-        );
+    for (const packageName of packageNames) {
+      const recorded = previous[packageName];
+      const since = await this.sinceOf(packageName, recorded);
+      const kept = keepSince(recorded?.days ?? Object.create(null), since);
+      const fetched = await this.fetchDailyDownloads(
+        packageName,
+        this.fetchStart(since, recorded)
+      );
 
-        persistent[packageName] = recorded;
-        countable[packageName] = withUnsettledTail(
-          recorded,
-          fetched,
-          settledUntil
-        );
-      })
-    );
+      if (!fetched) {
+        countable[packageName] = { since, days: kept };
+
+        continue;
+      }
+
+      const days = recordDays(
+        kept,
+        fetched,
+        recordableUntil(fetched, settledUntil)
+      );
+
+      persistent[packageName] = { since, days };
+      countable[packageName] = {
+        since,
+        days: withUnsettledTail(days, fetched, settledUntil),
+      };
+    }
 
     await Bun.write(this.historyPath, JSON.stringify(persistent));
 
@@ -168,8 +271,18 @@ export class NPM {
     return countable;
   }
 
-  private downloadInfo(value: number, period: Period): DownloadInfo {
-    return { value, label: this.formatNumber(value, period) };
+  private abbreviate(num: number): string {
+    const unit = NPM.UNITS.find(({ value }) => num >= value);
+
+    if (!unit) return String(num);
+
+    return `${(num / unit.value).toFixed(1).replace(/\.0$/, '')}${unit.suffix}`;
+  }
+
+  private downloadInfo(value: number, period?: Period): DownloadInfo {
+    const amount = this.abbreviate(value);
+
+    return { value, label: period ? `${amount}/${period}` : amount };
   }
 
   private async groupStats(packageNames: string[]): Promise<GroupStats> {
@@ -180,49 +293,39 @@ export class NPM {
 
     let month = 0;
     let year = 0;
+    let total = 0;
 
     for (const packageName of packageNames) {
-      const daily: DailyDownloads =
-        downloads[packageName] ?? Object.create(null);
-      const monthly = sumSince(daily, monthStart);
-      const yearly = sumSince(daily, yearStart);
+      const { since, days } = downloads[packageName];
+      const monthly = sumSince(days, monthStart);
+      const yearly = sumSince(days, yearStart);
+      const all = sumSince(days, since);
 
       packages[packageName] = {
+        since,
         downloadsPerMonth: this.downloadInfo(monthly, 'month'),
         downloadsPerYear: this.downloadInfo(yearly, 'year'),
+        downloadsTotal: this.downloadInfo(all),
       };
 
       month += monthly;
       year += yearly;
+      total += all;
     }
 
+    const since =
+      Object.values(packages)
+        .map((stats) => stats.since)
+        .sort()
+        .at(0) ?? null;
+
     return {
+      since,
       packages,
       downloadsPerMonth: this.downloadInfo(month, 'month'),
       downloadsPerYear: this.downloadInfo(year, 'year'),
+      downloadsTotal: this.downloadInfo(total),
     };
-  }
-
-  private formatNumber(num: number, period: Period): string {
-    if (num < 1000) return `${num}/${period}`;
-
-    const units = [
-      { value: 1e9, suffix: 'B' },
-      { value: 1e6, suffix: 'M' },
-      { value: 1e3, suffix: 'k' },
-    ];
-
-    for (const unit of units) {
-      if (num >= unit.value) {
-        const val = num / unit.value;
-
-        return val % 1 === 0
-          ? `${val.toFixed(0)}${unit.suffix}/${period}`
-          : `${val.toFixed(1).replace(/\.0$/, '')}${unit.suffix}/${period}`;
-      }
-    }
-
-    return `${num}/${period}`;
   }
 
   private async searchPackages(): Promise<string[]> {
@@ -261,7 +364,7 @@ export class NPM {
     ]);
 
     this.cachedPackages = [...names]
-      .filter((name) => !this.coMaintained.includes(name))
+      .filter((name) => !this.coMaintained.has(name))
       .sort();
 
     return this.cachedPackages;
@@ -272,6 +375,6 @@ export class NPM {
   }
 
   public async coMaintainedStats(): Promise<GroupStats> {
-    return this.groupStats(this.coMaintained);
+    return this.groupStats([...this.coMaintained.keys()]);
   }
 }
