@@ -1,20 +1,23 @@
-#### I've been working on [**Poku**](https://github.com/wellwelwel/poku?tab=readme-ov-file#readme) 🐷, an innovative test runner.
+<img src="src/assets/images/modal.png" alt="Weslley Araújo" width="30%" align="left">
 
-> _Give it a try and **star** the repo to show your support_ ✨
+#### 👨🏻‍💻 I'm Weslley and I've been working on _open-source_ since **2021**.
 
----
+> **Speaker** | **2x Microsoft MVP** | **Anthropic CVP**
 
-##### 👨🏻‍💻 Working on _open-source_ since **2021**
-
-<blockquote>
-  <a href="https://www.npmjs.com/~weslley.io"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fwellwelwel.github.io%2Fwellwelwel%2Fstats.json&query=%24.author.downloadsPerYear.label&style=flat-square&logo=npm&logoColor=white&label=My%20NPM%20packages%20have%20been%20downloaded&color=6d3ffc" alt="NPM Downloads by package author"></a>
-</blockquote>
+<a href="https://www.npmjs.com/~weslley.io"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fwellwelwel.github.io%2Fwellwelwel%2Fstats.json&query=%24.author.downloadsPerYear.label&style=flat-square&logo=npm&logoColor=white&label=My%20NPM%20packages%20have%20been%20downloaded&color=6d3ffc" alt="NPM Downloads by package author"></a>
 
 ---
 
-##### 🤝 Check out some collaborative contributions with most impact (_PRs_)
+🐷 I've been working on [**Poku**](https://github.com/wellwelwel/poku?tab=readme-ov-file#readme), an innovative test runner.<br>
+🪼 I founded [**Lagune**](https://github.com/wellwelwel/lagune?tab=readme-ov-file#readme), your security copilot through AI.
 
-##### ➕ Featured projects I maintain:
+> **Give them a **star** to show your support ★**
+
+<br clear="left">
+
+---
+
+#### 🤝 Featured projects I maintain
 
 <table>
   <tbody>
@@ -51,48 +54,14 @@
   </tbody>
 </table>
 
-##### ➗ Highlighted thrid-party contributions:
-
-<table>
-  <tbody>
-    <tr>
-      <td width="165"><a href="https://github.com/DefinitelyTyped/DefinitelyTyped/pulls?q=is:merged+author:wellwelwel">@types/node</a></td>
-      <td width="117"><a href="https://www.npmjs.com/package/@types/node"><img src="https://img.shields.io/npm/dm/@types/node.svg?style=flat-square&color=6d3ffc&label=&logo=npm&logoColor=white" alt="Downloads"></a></td>
-      <td>🐢 Node.js JavaScript runtime.</td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/testdouble/quibble/pulls?q=is:merged+author:wellwelwel">quibble</a></td>
-      <td><a href="https://www.npmjs.com/package/quibble"><img src="https://img.shields.io/npm/dm/quibble.svg?style=flat-square&color=6d3ffc&label=&logo=npm&logoColor=white" alt="Downloads"></a></td>
-      <td>🃏 Makes it easy to replace require'd dependencies.</td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/BrasilAPI/cep-promise/pulls?q=is:merged+author:wellwelwel">CEP Promise</a></td>
-      <td ><a href="https://www.npmjs.com/package/cep-promise"><img src="https://img.shields.io/npm/dm/cep-promise.svg?style=flat-square&color=6d3ffc&label=&logo=npm&logoColor=white" alt="Downloads"></a></td>
-      <td>📪 ZIP code search integrated directly with Correios, ViaCEP, and other services.</td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/facebook/docusaurus/pulls?q=is:merged+author:wellwelwel">Docusaurus</a></td>
-      <td><a href="https://www.npmjs.com/package/docusaurus"><img src="https://img.shields.io/npm/dm/docusaurus.svg?style=flat-square&color=6d3ffc&label=&logo=npm&logoColor=white" alt="Downloads"></a></td>
-      <td>🦖 Easy to maintain open source documentation websites.</td>
-    </tr>
-    <tr>
-      <td><a href="https://github.com/aashutoshrathi/word-wrap/pulls?q=is:merged+author:wellwelwel">word-wrap</a></td>
-      <td><a href="https://www.npmjs.com/package/@aashutoshrathi/word-wrap"><img src="https://img.shields.io/npm/dm/@aashutoshrathi/word-wrap.svg?style=flat-square&color=6d3ffc&label=&logo=npm&logoColor=white" alt="Downloads"></a></td>
-      <td>🅰 Wrap words to a specified length.</td>
-    </tr>
-  </tbody>
-</table>
-
 ---
 
-### 🥳 Sponsors
+#### 🎉 Sponsors
 
 Really thanks <strong>to everyone</strong> who has supported and keeps supporting my work.
-
-> _Also for the private ones, who don't appear here_ 🕵
 
 [![Sponsors](https://wellwelwel.github.io/wellwelwel/sponsors-sm.svg?v=1)](https://github.com/sponsors/wellwelwel)
 
 ---
 
-Contact me via [**LinkedIn**](https://www.linkedin.com/in/wellwelwel/) — 🇧🇷 🇺🇸
+<img src="./src/assets/images/banner.png">
