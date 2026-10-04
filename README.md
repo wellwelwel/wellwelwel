@@ -62,6 +62,4 @@ Really thanks <strong>to everyone</strong> who has supported and keeps supportin
 
 ---
 
-<img src="./src/assets/images/banner.png" width="60%">
-
 › [**Contact me**](https://weslley.io/?partners) for talks, workshops, or collaborations 🎙️
