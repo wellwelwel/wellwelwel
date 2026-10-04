@@ -1,4 +1,4 @@
-<img src="src/assets/images/modal.png" alt="Weslley Araújo" width="30%" align="left">
+<img src="src/assets/images/photo.png" alt="Weslley Araújo" width="30%" align="left">
 
 #### 👨🏻‍💻 I'm Weslley and I've been working on _open-source_ since **2021**.
 
