@@ -15,8 +15,6 @@
 
 <br clear="left">
 
----
-
 #### 🤝 Featured projects I maintain
 
 <table>
