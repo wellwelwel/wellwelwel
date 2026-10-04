@@ -64,4 +64,6 @@ Really thanks <strong>to everyone</strong> who has supported and keeps supportin
 
 ---
 
-<img src="./src/assets/images/banner.png">
+<img src="./src/assets/images/banner.png" width="60%">
+
+› Contact me via [**LinkedIn**](https://www.linkedin.com/in/wellwelwel/) or [**Instagram**](https://www.instagram.com/wellwelwel/) 🖖
