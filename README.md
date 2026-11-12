@@ -8,8 +8,8 @@
 
 ---
 
-🐷 I've been working on [**Poku**](https://github.com/wellwelwel/poku?tab=readme-ov-file#readme), an innovative test runner.<br>
-🪼 I founded [**Lagune AI**](https://github.com/wellwelwel/lagune?tab=readme-ov-file#readme), your security copilot through AI.
+🪼 I founded [**Lagune AI**](https://github.com/wellwelwel/lagune?tab=readme-ov-file#readme), your security copilot through AI.<br>
+🐷 I've been working on [**Poku**](https://github.com/wellwelwel/poku?tab=readme-ov-file#readme), an innovative test runner.
 
 > **Give them a **star** to show your support ★**
 
